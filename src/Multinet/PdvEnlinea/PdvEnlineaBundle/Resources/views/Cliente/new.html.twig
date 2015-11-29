@@ -1,15 +1,40 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Cliente creation</h1>
+<script type="text/javascript">
+	function submitForm(boton){
+		if ($('#multinet_pdvonline_pdvonlinebundle_cliente_descripcion').val() != "") {
+			$(boton).button('loading');
+		};
+	}
+</script>
+<div class="container">
+     <div class="page-header">
+        <h4>Cliente <small>Creación</small></h4>
+        <a href="{{ path('cliente') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+    </div>
+	<form action="{{ path('cliente_create') }}" method="POST">
+		{{form_errors(form)}}
+        {{form_widget(form._token)}}
+        {{ form_label(form.nombrecliente) }}
+        {{ form_widget(form.nombrecliente)}}
+        {{ form_label(form.nitcliente) }}
+        {{ form_widget(form.nitcliente)}}
+        {{ form_label(form.direccioncliente) }}
+        {{ form_widget(form.direccioncliente)}}
+        {{ form_label(form.mailcliente) }}
+        {{ form_widget(form.mailcliente)}}
+        <div style="display:none">
+	        {{ form_label(form.status) }}
+	        {{ form_widget(form.status)}}
+	        {{ form_label(form.createdat) }}
+	        {{ form_widget(form.createdat)}}
+	        {{ form_label(form.updatedat) }}
+	        {{ form_widget(form.updatedat)}}
+        </div>
+        <br/>
+        <button type="submit" onclick="submitForm(this)" data-loading-text="Guardando..." class="btn btn-success btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+	</form>
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('cliente') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+</div>
 {% endblock %}

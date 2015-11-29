@@ -16,47 +16,47 @@ class EmpresaType extends AbstractType
     {
         $builder
             ->add('nitempresa',null,array(
-                'label' => '',
+                'label' => 'NIT Empresa',
                 'attr'  => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('nombreempresa',null,array(
-                'label' => '',
+                'label' => 'Nombre Empresa',
                 'attr'  => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('direccionempresa',null,array(
-                'label' => '',
+                'label' => 'Direccion Empresa',
                 'attr'  => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('mailempresa',null,array(
-                'label' => '',
+                'label' => 'Mail Contacto',
                 'attr'  => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('contactoempresa',null,array(
-                'label' => '',
+                'label' => 'Contacto Empresa',
                 'attr'  => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('telefonoempresa',null,array(
+                'label' => 'Telefono Empresa',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('status',null,array(
                 'label' => '',
                 'attr'  => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('status,null,array(
-                'label' => '',
-                'attr'  => array(
-                    'class' => 'form-control'
-                )
-            )')
             ->add('createdat',null,array(
                 'label' => '',
                 'attr'  => array(

@@ -1,15 +1,44 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Empresa creation</h1>
+<script type="text/javascript">
+	function submitForm(boton){
+		if ($('#multinet_pdvonline_pdvonlinebundle_empresa_descripcion').val() != "") {
+			$(boton).button('loading');
+		};
+	}
+</script>
+<div class="container">
+     <div class="page-header">
+        <h4>Empresa <small>Creación</small></h4>
+        <a href="{{ path('empresa') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+    </div>
+	<form action="{{ path('empresa_create') }}" method="POST">
+		{{form_errors(form)}}
+        {{form_widget(form._token)}}
+        {{ form_label(form.nitempresa) }}
+        {{ form_widget(form.nitempresa)}}
+        {{ form_label(form.nombreempresa) }}
+        {{ form_widget(form.nombreempresa)}}
+        {{ form_label(form.direccionempresa) }}
+        {{ form_widget(form.direccionempresa)}}
+        {{ form_label(form.contactoempresa) }}
+        {{ form_widget(form.contactoempresa)}}
+        {{ form_label(form.mailempresa) }}
+        {{ form_widget(form.mailempresa)}}
+        {{ form_label(form.telefonoempresa) }}
+        {{ form_widget(form.telefonoempresa)}}
+        <div style="display:none">
+	        {{ form_label(form.status) }}
+	        {{ form_widget(form.status)}}
+	        {{ form_label(form.createdat) }}
+	        {{ form_widget(form.createdat)}}
+	        {{ form_label(form.updatedat) }}
+	        {{ form_widget(form.updatedat)}}
+        </div>
+        <br/>
+        <button type="submit" onclick="submitForm(this)" data-loading-text="Guardando..." class="btn btn-success btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+	</form>
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('empresa') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+</div>
 {% endblock %}
