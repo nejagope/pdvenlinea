@@ -428,4 +428,7 @@ class Empresa
     {
         return $this->idSucursal;
     }
+    public function __toString(){
+        return (string) $this->getNombreempresa();
+    }
 }

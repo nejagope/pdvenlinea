@@ -1,16 +1,40 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Cliente edit</h1>
+<script type="text/javascript">
+	function submitForm(boton){
+		if ($('#multinet_pdvonline_pdvonlinebundle_cliente_descripcion').val() != "") {
+			$(boton).button('loading');
+		};
+	}
+</script>
+<div class="container">
+     <div class="page-header">
+        <h4>Cliente <small>Edición</small></h4>
+        <a href="{{ path('cliente') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+    </div>
+	<form action="{{ path('cliente_update',{'id':entity.id}) }}" method="POST">
+		{{form_errors(edit_form)}}
+        {{form_widget(edit_form._token)}}
+        {{ form_label(edit_form.nombrecliente) }}
+        {{ form_widget(edit_form.nombrecliente)}}
+        {{ form_label(edit_form.nitcliente) }}
+        {{ form_widget(edit_form.nitcliente)}}
+        {{ form_label(edit_form.direccioncliente) }}
+        {{ form_widget(edit_form.direccioncliente)}}
+        {{ form_label(edit_form.mailcliente) }}
+        {{ form_widget(edit_form.mailcliente)}}
+        <div style="display:none">
+	        {{ form_label(edit_form.status) }}
+	        {{ form_widget(edit_form.status)}}
+	        {{ form_label(edit_form.createdat) }}
+	        {{ form_widget(edit_form.createdat)}}
+	        {{ form_label(edit_form.updatedat) }}
+	        {{ form_widget(edit_form.updatedat)}}
+        </div>
+        <br/>
+        <button type="submit" onclick="submitForm(this)" data-loading-text="Guardando..." class="btn btn-success btn-sm"><span class="glyphicon glyphicon-refresh"></span> Guardar Cambios</button>
+	</form>
 
-    {{ form(edit_form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('cliente') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+</div>
 {% endblock %}

@@ -1,16 +1,44 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Empresa edit</h1>
+    <script type="text/javascript">
+	function submitForm(boton){
+		if ($('#multinet_pdvonline_pdvonlinebundle_empresa_descripcion').val() != "") {
+			$(boton).button('loading');
+		};
+	}
+</script>
+<div class="container">
+     <div class="page-header">
+        <h4>Empresa <small>Edición</small></h4>
+        <a href="{{ path('empresa') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+    </div>
+	<form action="{{ path('empresa_update',{'id':entity.id}) }}" method="POST">
+		{{form_errors(edit_form)}}
+        {{form_widget(edit_form._token)}}
+        {{ form_label(edit_form.nitempresa) }}
+        {{ form_widget(edit_form.nitempresa)}}
+        {{ form_label(edit_form.nombreempresa) }}
+        {{ form_widget(edit_form.nombreempresa)}}
+        {{ form_label(edit_form.direccionempresa) }}
+        {{ form_widget(edit_form.direccionempresa)}}
+        {{ form_label(edit_form.contactoempresa) }}
+        {{ form_widget(edit_form.contactoempresa)}}
+        {{ form_label(edit_form.mailempresa) }}
+        {{ form_widget(edit_form.mailempresa)}}
+        {{ form_label(edit_form.telefonoempresa) }}
+        {{ form_widget(edit_form.telefonoempresa)}}
+        <div style="display:none">
+	        {{ form_label(edit_form.status) }}
+	        {{ form_widget(edit_form.status)}}
+	        {{ form_label(edit_form.createdat) }}
+	        {{ form_widget(edit_form.createdat)}}
+	        {{ form_label(edit_form.updatedat) }}
+	        {{ form_widget(edit_form.updatedat)}}
+        </div>
+        <br/>
+        <button type="submit" onclick="submitForm(this)" data-loading-text="Guardando..." class="btn btn-success btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+	</form>
 
-    {{ form(edit_form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('empresa') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+</div>
 {% endblock %}

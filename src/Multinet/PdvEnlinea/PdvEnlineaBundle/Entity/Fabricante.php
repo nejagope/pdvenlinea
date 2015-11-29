@@ -242,4 +242,7 @@ class Fabricante
     {
         return $this->updatedat;
     }
+    public function __toString(){
+        return (string) $this->getNombre();
+    }
 }

@@ -162,7 +162,6 @@ class EmpresaController extends Controller
     {
         $form = $this->createForm(new EmpresaType(), $entity, array(
             'action' => $this->generateUrl('empresa_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
@@ -173,7 +172,7 @@ class EmpresaController extends Controller
      * Edits an existing Empresa entity.
      *
      * @Route("/{id}", name="empresa_update")
-     * @Method("PUT")
+     * @Method("POST")
      * @Template("PdvBundle:Empresa:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
@@ -181,7 +180,7 @@ class EmpresaController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PdvBundle:Empresa')->find($id);
-
+        $entity->setUpdatedAt(new \DateTime());
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Empresa entity.');
         }
@@ -191,6 +190,7 @@ class EmpresaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('empresa_edit', array('id' => $id)));
