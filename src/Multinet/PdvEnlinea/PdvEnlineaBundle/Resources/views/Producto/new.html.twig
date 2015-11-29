@@ -1,15 +1,47 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Producto creation</h1>
+  <script type="text/javascript">
+	function submitForm(boton){
+		if ($('#multinet_pdvonline_pdvonlinebundle_producto_nombre').val() != "") {
+			$(boton).button('loading');
+		};
+	}
+</script>
+<div class="container">
+     <div class="page-header">
+        <h4>Producto <small>Creación</small></h4>
+        <a href="{{ path('producto') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+    </div>
+	<form action="{{ path('producto_create') }}" method="POST">
+		{{form_errors(form)}}
+        {{form_widget(form._token)}}
+        {{ form_label(form.nombre) }}
+        {{ form_widget(form.nombre)}}
+        {{ form_label(form.preciocosto) }}
+        {{ form_widget(form.preciocosto)}}
+        {{ form_label(form.precioventa) }}
+        {{ form_widget(form.precioventa)}}
+        {{ form_label(form.fechavencimiento) }}
+        {{ form_widget(form.fechavencimiento)}}
+         {{ form_label(form.idTipoMoneda) }}
+        {{ form_widget(form.idTipoMoneda)}}
+       
+        {{ form_label(form.iddistribuidor) }}
+        {{ form_widget(form.iddistribuidor)}}
+        {{ form_label(form.idcategoriaproducto) }}
+        {{ form_widget(form.idcategoriaproducto)}}
+        <div style="display:none">
+	        {{ form_label(form.status) }}
+	        {{ form_widget(form.status)}}
+	        {{ form_label(form.createdat) }}
+	        {{ form_widget(form.createdat)}}
+	        {{ form_label(form.updatedat) }}
+	        {{ form_widget(form.updatedat)}}
+        </div>
+        <br/>
+        <button type="submit" onclick="submitForm(this)" data-loading-text="Guardando..." class="btn btn-success btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+	</form>
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('producto') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+</div>
 {% endblock %}

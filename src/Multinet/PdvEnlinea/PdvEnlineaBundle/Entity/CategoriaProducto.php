@@ -152,4 +152,7 @@ class CategoriaProducto
     {
         return $this->updatedAt;
     }
+    public function __toString(){
+        return (string) $this->getDescripcion();
+    }
 }

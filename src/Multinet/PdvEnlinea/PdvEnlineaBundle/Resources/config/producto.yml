@@ -1,27 +1,27 @@
 producto:
     path:     /index
-    defaults: { _controller: PdvBundle:Fabricante:index }
+    defaults: { _controller: PdvBundle:Producto:index }
 
 producto_new:
     path:     /new/
-    defaults: { _controller: PdvBundle:Fabricante:new }
+    defaults: { _controller: PdvBundle:Producto:new }
 
 producto_create:
     path:     /create/
-    defaults: { _controller: PdvBundle:Fabricante:create }
+    defaults: { _controller: PdvBundle:Producto:create }
 
 producto_edit:
     path:     /edit/{id}
-    defaults: { _controller: PdvBundle:Fabricante:edit,id:null }
+    defaults: { _controller: PdvBundle:Producto:edit,id:null }
 
 producto_update:
     path:     /update/{id}
-    defaults: { _controller: PdvBundle:Fabricante:update }
+    defaults: { _controller: PdvBundle:Producto:update }
 
 producto_delete:
     path:     /delete/{id}
-    defaults: { _controller: PdvBundle:Fabricante:delete,id:null }
+    defaults: { _controller: PdvBundle:Producto:delete,id:null }
 
 producto_show:
     path:     /show/{id}
-    defaults: { _controller: PdvBundle:Fabricante:show,id:null }
+    defaults: { _controller: PdvBundle:Producto:show,id:null }

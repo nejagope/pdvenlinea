@@ -1,15 +1,36 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>TipoMoneda creation</h1>
+    <script type="text/javascript">
+	function submitForm(boton){
+		if ($('#multinet_pdvonline_pdvonlinebundle_tipomoneda_descripcion').val() != "") {
+			$(boton).button('loading');
+		};
+	}
+</script>
+<div class="container">
+     <div class="page-header">
+        <h4>Cliente <small>Creación</small></h4>
+        <a href="{{ path('tipomoneda') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+    </div>
+	<form action="{{ path('tipomoneda_create') }}" method="POST">
+		{{form_errors(form)}}
+        {{form_widget(form._token)}}
+        {{ form_label(form.descripcion) }}
+        {{ form_widget(form.descripcion)}}
+        {{ form_label(form.signo) }}
+        {{ form_widget(form.signo)}}
+        <div style="display:none">
+	        {{ form_label(form.status) }}
+	        {{ form_widget(form.status)}}
+	        {{ form_label(form.createdAt) }}
+	        {{ form_widget(form.createdAt)}}
+	        {{ form_label(form.updatedAt) }}
+	        {{ form_widget(form.updatedAt)}}
+        </div>
+        <br/>
+        <button type="submit" onclick="submitForm(this)" data-loading-text="Guardando..." class="btn btn-success btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+	</form>
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('tipomoneda') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+</div>
 {% endblock %}
