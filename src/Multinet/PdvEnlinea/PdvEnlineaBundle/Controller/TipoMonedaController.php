@@ -29,7 +29,9 @@ class TipoMonedaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('PdvBundle:TipoMoneda')->findAll();
+        $entities = $em->getRepository('PdvBundle:TipoMoneda')->findBy(array(
+            'status' => 1
+        ));
 
         return array(
             'entities' => $entities,
@@ -91,6 +93,8 @@ class TipoMonedaController extends Controller
     public function newAction()
     {
         $entity = new TipoMoneda();
+        $entity->setCreatedAt(new \DateTime());
+        $entity->setUpdatedAt(new \DateTime());
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -136,7 +140,7 @@ class TipoMonedaController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PdvBundle:TipoMoneda')->find($id);
-
+        $entity->setUpdatedAt(new \DateTime());
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find TipoMoneda entity.');
         }
@@ -162,7 +166,6 @@ class TipoMonedaController extends Controller
     {
         $form = $this->createForm(new TipoMonedaType(), $entity, array(
             'action' => $this->generateUrl('tipomoneda_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
@@ -173,7 +176,7 @@ class TipoMonedaController extends Controller
      * Edits an existing TipoMoneda entity.
      *
      * @Route("/{id}", name="tipomoneda_update")
-     * @Method("PUT")
+     * @Method("POST")
      * @Template("PdvBundle:TipoMoneda:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
@@ -191,6 +194,7 @@ class TipoMonedaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('tipomoneda_edit', array('id' => $id)));
@@ -216,12 +220,12 @@ class TipoMonedaController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('PdvBundle:TipoMoneda')->find($id);
-
+             $entity->setStatus(0);
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find TipoMoneda entity.');
             }
 
-            $em->remove($entity);
+            $em->persist($entity);
             $em->flush();
         }
 
@@ -240,7 +244,7 @@ class TipoMonedaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('tipomoneda_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar Registro','attr' => array('class' => 'btn btn-danger btn-sm', 'onclick' => 'submitForm(this)', 'data-loading-text' => 'Eliminando Registro...')))
             ->getForm()
         ;
     }

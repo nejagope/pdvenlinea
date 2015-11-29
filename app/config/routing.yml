@@ -2,6 +2,34 @@ pdv:
     resource: "@PdvBundle/Resources/config/routing.yml"
     prefix:   /
 
+cliente:
+    resource: "@PdvBundle/Resources/config/cliente.yml"
+    prefix:   /cliente/
+
+fabricante:
+    resource: "@PdvBundle/Resources/config/fabricante.yml"
+    prefix:   /fabricante/
+
+unidadmedida:
+    resource: "@PdvBundle/Resources/config/unidadmedida.yml"
+    prefix:   /unidadmedida/
+
+tipomoneda:
+    resource: "@PdvBundle/Resources/config/tipomoneda.yml"
+    prefix:   /tipomoneda/
+
+producto:
+    resource: "@PdvBundle/Resources/config/producto.yml"
+    prefix:   /producto/
+
+categoriaproducto:
+    resource: "@PdvBundle/Resources/config/categoriaproducto.yml"
+    prefix:   /categoriaproducto/
+
+empresa:
+    resource: "@PdvBundle/Resources/config/empresa.yml"
+    prefix:   /empresa/
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

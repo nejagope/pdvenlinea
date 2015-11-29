@@ -54,7 +54,7 @@ class Fabricante
      *
      * @ORM\Column(name="status", type="boolean", nullable=true)
      */
-    private $status;
+    private $status = true;
 
     /**
      * @var \DateTime

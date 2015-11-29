@@ -29,7 +29,9 @@ class FabricanteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('PdvBundle:Fabricante')->findAll();
+        $entities = $em->getRepository('PdvBundle:Fabricante')->findBy(array(
+            'status' => 1
+        ));
 
         return array(
             'entities' => $entities,
@@ -91,6 +93,8 @@ class FabricanteController extends Controller
     public function newAction()
     {
         $entity = new Fabricante();
+        $entity->setCreatedAt(new \DateTime());
+        $entity->setUpdatedAt(new \DateTime());
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -136,7 +140,7 @@ class FabricanteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PdvBundle:Fabricante')->find($id);
-
+         $entity->setUpdatedAt(new \DateTime());
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Fabricante entity.');
         }
@@ -162,7 +166,6 @@ class FabricanteController extends Controller
     {
         $form = $this->createForm(new FabricanteType(), $entity, array(
             'action' => $this->generateUrl('fabricante_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
@@ -173,7 +176,7 @@ class FabricanteController extends Controller
      * Edits an existing Fabricante entity.
      *
      * @Route("/{id}", name="fabricante_update")
-     * @Method("PUT")
+     * @Method("POST")
      * @Template("PdvBundle:Fabricante:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
@@ -191,6 +194,7 @@ class FabricanteController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('fabricante_edit', array('id' => $id)));
@@ -216,12 +220,12 @@ class FabricanteController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('PdvBundle:Fabricante')->find($id);
-
+            $entity->setStatus(0);
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Fabricante entity.');
             }
 
-            $em->remove($entity);
+            $em->persist($entity);
             $em->flush();
         }
 
@@ -240,7 +244,7 @@ class FabricanteController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('fabricante_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar Registro','attr' => array('class' => 'btn btn-danger btn-sm', 'onclick' => 'submitForm(this)', 'data-loading-text' => 'Eliminando Registro...')))
             ->getForm()
         ;
     }

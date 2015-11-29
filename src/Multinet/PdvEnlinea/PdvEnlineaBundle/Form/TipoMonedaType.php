@@ -15,11 +15,36 @@ class TipoMonedaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('descripcion')
-            ->add('signo')
-            ->add('status')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('descripcion',null,array(
+                'label' => '',
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('signo',null,array(
+                'label' => '',
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('status',null,array(
+                'label' => '',
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('createdAt',null,array(
+                'label' => '',
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('updatedAt',null,array(
+                'label' => '',
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
         ;
     }
     

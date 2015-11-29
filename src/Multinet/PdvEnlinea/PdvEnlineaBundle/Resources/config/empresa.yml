@@ -1,0 +1,27 @@
+empresa:
+    path:     /index
+    defaults: { _controller: PdvBundle:Empresa:index }
+
+empresa_new:
+    path:     /new/
+    defaults: { _controller: PdvBundle:Empresa:new }
+
+empresa_create:
+    path:     /create/
+    defaults: { _controller: PdvBundle:Empresa:create }
+
+empresa_edit:
+    path:     /edit/{id}
+    defaults: { _controller: PdvBundle:Empresa:edit,id:null }
+
+empresa_update:
+    path:     /update/{id}
+    defaults: { _controller: PdvBundle:Empresa:create }
+
+empresa_delete:
+    path:     /delete/{id}
+    defaults: { _controller: PdvBundle:Empresa:delete,id:null }
+
+empresa_show:
+    path:     /{id}/show
+    defaults: { _controller: PdvBundle:Empresa:show }
