@@ -1,0 +1,51 @@
+{% extends '::base.html.twig'%}
+{% block body %}
+	{% block menu %}
+	<div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">
+          	PDV Online</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Mantenimientos <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+              	<li><a href="{{path('empleado') }}">Empleados</a></li>
+                <li><a href="{{path('tipoempleado') }}">Tipos de Empleado</a></li>
+                <li><a href="{{path('puesto') }}">Puestos</a></li>
+                <li class="divider"></li>
+                <li><a href="{{path('empresa') }}">Empresas</a></li>
+                <li><a href="{{path('areaempresa') }}">Areas de Empresa</a></li>
+                <li class="divider"></li>
+                <li><a href="{{path('tipoactividad') }}">Tipos de Actividad</a></li>
+                <li><a href="{{path('tienda') }}">Tiendas</a></li>
+                <li><a href="{{path('resolucionsat') }}">Resoluciones</a></li>
+                <li><a href="{{path('distribuidor') }}">Distribuidores</a></li>
+                <li><a href="{{path('categoriaproducto') }}">Categorias de Producto</a></li>               
+                <li><a href="{{path('tipoactividad') }}">Actividades de Tienda</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="../help/">Help</a>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a><span class="glyphicon glyphicon-off"></span>  Salir</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    {% block content %}
+
+    {% endblock %}
+{% endblock %}
