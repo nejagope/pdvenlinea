@@ -16,12 +16,12 @@ tipomoneda_edit:
 
 tipomoneda_update:
     path:     /update/{id}
-    defaults: { _controller: PdvBundle:TipoMoneda:create }
+    defaults: { _controller: PdvBundle:TipoMoneda:update }
 
 tipomoneda_delete:
     path:     /delete/{id}
     defaults: { _controller: PdvBundle:TipoMoneda:delete,id:null }
 
 tipomoneda_show:
-    path:     /{id}/show
-    defaults: { _controller: PdvBundle:TipoMoneda:show }
+    path:     /show/{id}
+    defaults: { _controller: PdvBundle:TipoMoneda:show,id:null }

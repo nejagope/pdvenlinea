@@ -16,12 +16,12 @@ empresa_edit:
 
 empresa_update:
     path:     /update/{id}
-    defaults: { _controller: PdvBundle:Empresa:create }
+    defaults: { _controller: PdvBundle:Empresa:update }
 
 empresa_delete:
     path:     /delete/{id}
     defaults: { _controller: PdvBundle:Empresa:delete,id:null }
 
 empresa_show:
-    path:     /{id}/show
-    defaults: { _controller: PdvBundle:Empresa:show }
+    path:     /show/{id}
+    defaults: { _controller: PdvBundle:Empresa:show,id:null }
