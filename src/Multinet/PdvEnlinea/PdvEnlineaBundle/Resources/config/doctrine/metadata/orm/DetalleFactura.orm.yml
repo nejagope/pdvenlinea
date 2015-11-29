@@ -1,0 +1,57 @@
+DetalleFactura:
+    type: entity
+    table: detalle_factura
+    indexes:
+        idFactura:
+            columns:
+                - idFactura
+        idProducto:
+            columns:
+                - idProducto
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        cantidad:
+            type: integer
+            nullable: false
+            unsigned: false
+        subtotal:
+            type: decimal
+            nullable: false
+            precision: 16
+            scale: 2
+            column: subTotal
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    manyToOne:
+        idfactura:
+            targetEntity: Factura
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idFactura:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idproducto:
+            targetEntity: Producto
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idProducto:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

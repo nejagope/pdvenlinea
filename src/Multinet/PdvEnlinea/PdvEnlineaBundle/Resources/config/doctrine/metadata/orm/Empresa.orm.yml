@@ -1,0 +1,97 @@
+Empresa:
+    type: entity
+    table: empresa
+    indexes:
+        fk_empresa_tipoempresa_idx:
+            columns:
+                - id_tipo_empresa
+        fk_empresa_empresa_idx:
+            columns:
+                - id_sucursal
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nitempresa:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: nitEmpresa
+        nombreempresa:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: nombreEmpresa
+        direccionempresa:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: direccionEmpresa
+        mailempresa:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: mailEmpresa
+        contactoempresa:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: contactoEmpresa
+        telefonoempresa:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: telefonoEmpresa
+        status:
+            type: boolean
+            nullable: true
+            default: '1'
+        createdat:
+            type: datetime
+            nullable: false
+            column: createdAt
+        updatedat:
+            type: datetime
+            nullable: false
+            column: updatedAt
+        nombreCertificado:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            column: nombre_certificado
+        estadoSucursal:
+            type: boolean
+            nullable: true
+            column: estado_sucursal
+    manyToOne:
+        idTipoEmpresa:
+            targetEntity: TipoEmpresa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_tipo_empresa:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idSucursal:
+            targetEntity: Empresa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_sucursal:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

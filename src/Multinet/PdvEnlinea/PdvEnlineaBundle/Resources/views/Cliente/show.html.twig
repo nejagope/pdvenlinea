@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Cliente</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombrecliente</th>
+                <td>{{ entity.nombrecliente }}</td>
+            </tr>
+            <tr>
+                <th>Nitcliente</th>
+                <td>{{ entity.nitcliente }}</td>
+            </tr>
+            <tr>
+                <th>Direccioncliente</th>
+                <td>{{ entity.direccioncliente }}</td>
+            </tr>
+            <tr>
+                <th>Mailcliente</th>
+                <td>{{ entity.mailcliente }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ entity.status }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('cliente') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('cliente_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

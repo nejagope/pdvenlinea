@@ -1,0 +1,146 @@
+<?php
+
+namespace Multinet\PdvEnlinea\PdvEnlineaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Empleado
+ *
+ * @ORM\Table(name="empleado", indexes={@ORM\Index(name="idTipoEmpleado", columns={"idTipoEmpleado"}), @ORM\Index(name="idPuesto", columns={"idPuesto"}), @ORM\Index(name="idAreaEmpresa", columns={"idAreaEmpresa"})})
+ * @ORM\Entity
+ */
+class Empleado
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idTienda", type="integer", nullable=false)
+     */
+    private $idtienda;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombres", type="string", length=255, nullable=false)
+     */
+    private $nombres;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apellidos", type="string", length=255, nullable=false)
+     */
+    private $apellidos;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion", type="string", length=255, nullable=false)
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefono", type="string", length=255, nullable=false)
+     */
+    private $telefono;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usuarioSistema", type="string", length=255, nullable=false)
+     */
+    private $usuariosistema;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="passwordSistema", type="string", length=255, nullable=false)
+     */
+    private $passwordsistema;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaContratado", type="datetime", nullable=false)
+     */
+    private $fechacontratado;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaDespido", type="datetime", nullable=true)
+     */
+    private $fechadespido;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
+     */
+    private $updatedat;
+
+    /**
+     * @var \TipoEmpleado
+     *
+     * @ORM\ManyToOne(targetEntity="TipoEmpleado")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idTipoEmpleado", referencedColumnName="id")
+     * })
+     */
+    private $idtipoempleado;
+
+    /**
+     * @var \Puesto
+     *
+     * @ORM\ManyToOne(targetEntity="Puesto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idPuesto", referencedColumnName="id")
+     * })
+     */
+    private $idpuesto;
+
+    /**
+     * @var \AreaEmpresa
+     *
+     * @ORM\ManyToOne(targetEntity="AreaEmpresa")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idAreaEmpresa", referencedColumnName="id")
+     * })
+     */
+    private $idareaempresa;
+
+
+}

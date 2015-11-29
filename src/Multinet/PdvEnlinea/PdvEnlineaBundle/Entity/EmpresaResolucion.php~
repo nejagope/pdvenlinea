@@ -1,0 +1,66 @@
+<?php
+
+namespace Multinet\PdvEnlinea\PdvEnlineaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * EmpresaResolucion
+ *
+ * @ORM\Table(name="empresa_resolucion", indexes={@ORM\Index(name="fk_empresaresolucion_empresa_idx", columns={"id_empresa"}), @ORM\Index(name="fk_empresaresolucion_resolucion_idx", columns={"id_resolucion"})})
+ * @ORM\Entity
+ */
+class EmpresaResolucion
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="date", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="date", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var \Empresa
+     *
+     * @ORM\ManyToOne(targetEntity="Empresa")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_empresa", referencedColumnName="id")
+     * })
+     */
+    private $idEmpresa;
+
+    /**
+     * @var \ResolucionSat
+     *
+     * @ORM\ManyToOne(targetEntity="ResolucionSat")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_resolucion", referencedColumnName="id")
+     * })
+     */
+    private $idResolucion;
+
+
+}

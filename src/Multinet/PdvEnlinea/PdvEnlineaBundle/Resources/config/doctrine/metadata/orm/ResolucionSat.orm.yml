@@ -1,0 +1,55 @@
+ResolucionSat:
+    type: entity
+    table: resolucion_sat
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        resolucionsat:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: resolucionSat
+        fechaemision:
+            type: datetime
+            nullable: false
+            column: fechaEmision
+        status:
+            type: boolean
+            nullable: true
+            default: '1'
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        serie:
+            type: string
+            nullable: true
+            length: 5
+            fixed: false
+        correlativoDesde:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: correlativo_desde
+        correlativoHasta:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: correlativo_hasta
+        correlativoFactura:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: correlativo_factura
+    lifecycleCallbacks: {  }

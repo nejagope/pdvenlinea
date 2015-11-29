@@ -1,0 +1,29 @@
+UnidadesMedida:
+    type: entity
+    table: unidades_medida
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        descripcion:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+        status:
+            type: boolean
+            nullable: true
+        createdAt:
+            type: date
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: date
+            nullable: true
+            column: updated_at
+    lifecycleCallbacks: {  }

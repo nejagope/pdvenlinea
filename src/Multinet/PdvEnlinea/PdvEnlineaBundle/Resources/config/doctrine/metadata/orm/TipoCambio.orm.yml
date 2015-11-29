@@ -1,0 +1,55 @@
+TipoCambio:
+    type: entity
+    table: tipo_cambio
+    indexes:
+        fk_tipocambio_tipomoneda_idx:
+            columns:
+                - id_tipo_moneda
+        fk_tipocambio_empresa_idx:
+            columns:
+                - id_empresa
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        valor:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        status:
+            type: boolean
+            nullable: true
+        createdAt:
+            type: date
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: date
+            nullable: true
+            column: updated_at
+    manyToOne:
+        idEmpresa:
+            targetEntity: Empresa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_empresa:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idTipoMoneda:
+            targetEntity: TipoMoneda
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_tipo_moneda:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

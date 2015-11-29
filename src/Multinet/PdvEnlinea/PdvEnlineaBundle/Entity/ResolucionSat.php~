@@ -1,0 +1,88 @@
+<?php
+
+namespace Multinet\PdvEnlinea\PdvEnlineaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ResolucionSat
+ *
+ * @ORM\Table(name="resolucion_sat")
+ * @ORM\Entity
+ */
+class ResolucionSat
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resolucionSat", type="string", length=255, nullable=false)
+     */
+    private $resolucionsat;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaEmision", type="datetime", nullable=false)
+     */
+    private $fechaemision;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="serie", type="string", length=5, nullable=true)
+     */
+    private $serie;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="correlativo_desde", type="integer", nullable=true)
+     */
+    private $correlativoDesde;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="correlativo_hasta", type="integer", nullable=true)
+     */
+    private $correlativoHasta;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="correlativo_factura", type="integer", nullable=true)
+     */
+    private $correlativoFactura;
+
+
+}

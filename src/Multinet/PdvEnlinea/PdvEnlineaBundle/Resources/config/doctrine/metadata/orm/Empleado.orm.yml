@@ -1,0 +1,113 @@
+Empleado:
+    type: entity
+    table: empleado
+    indexes:
+        idTipoEmpleado:
+            columns:
+                - idTipoEmpleado
+        idPuesto:
+            columns:
+                - idPuesto
+        idAreaEmpresa:
+            columns:
+                - idAreaEmpresa
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        idtienda:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: idTienda
+        nombres:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        apellidos:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        direccion:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        telefono:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        email:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        usuariosistema:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: usuarioSistema
+        passwordsistema:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: passwordSistema
+        fechacontratado:
+            type: datetime
+            nullable: false
+            column: fechaContratado
+        fechadespido:
+            type: datetime
+            nullable: true
+            column: fechaDespido
+        status:
+            type: boolean
+            nullable: true
+            default: '1'
+        createdat:
+            type: datetime
+            nullable: false
+            column: createdAt
+        updatedat:
+            type: datetime
+            nullable: false
+            column: updatedAt
+    manyToOne:
+        idtipoempleado:
+            targetEntity: TipoEmpleado
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idTipoEmpleado:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idpuesto:
+            targetEntity: Puesto
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idPuesto:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idareaempresa:
+            targetEntity: AreaEmpresa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idAreaEmpresa:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

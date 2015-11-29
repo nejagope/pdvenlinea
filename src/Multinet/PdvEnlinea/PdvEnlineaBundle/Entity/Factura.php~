@@ -1,0 +1,90 @@
+<?php
+
+namespace Multinet\PdvEnlinea\PdvEnlineaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Factura
+ *
+ * @ORM\Table(name="factura", indexes={@ORM\Index(name="idEmpleado", columns={"idEmpleado"}), @ORM\Index(name="fk_factura_sucursal_idx", columns={"id_sucursal"}), @ORM\Index(name="fk_factura_cliente_idx", columns={"id_cliente"})})
+ * @ORM\Entity
+ */
+class Factura
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
+     */
+    private $updatedat;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_factura", type="date", nullable=true)
+     */
+    private $fechaFactura;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="estado_cierre", type="boolean", nullable=true)
+     */
+    private $estadoCierre;
+
+    /**
+     * @var \Empleado
+     *
+     * @ORM\ManyToOne(targetEntity="Empleado")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idEmpleado", referencedColumnName="id")
+     * })
+     */
+    private $idempleado;
+
+    /**
+     * @var \Empresa
+     *
+     * @ORM\ManyToOne(targetEntity="Empresa")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_sucursal", referencedColumnName="id")
+     * })
+     */
+    private $idSucursal;
+
+    /**
+     * @var \Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_cliente", referencedColumnName="id")
+     * })
+     */
+    private $idCliente;
+
+
+}

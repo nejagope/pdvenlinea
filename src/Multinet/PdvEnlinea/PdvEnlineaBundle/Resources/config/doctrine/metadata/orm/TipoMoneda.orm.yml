@@ -1,0 +1,34 @@
+TipoMoneda:
+    type: entity
+    table: tipo_moneda
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        descripcion:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+        signo:
+            type: string
+            nullable: true
+            length: 4
+            fixed: false
+        status:
+            type: boolean
+            nullable: true
+        createdAt:
+            type: date
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: date
+            nullable: true
+            column: updated_at
+    lifecycleCallbacks: {  }

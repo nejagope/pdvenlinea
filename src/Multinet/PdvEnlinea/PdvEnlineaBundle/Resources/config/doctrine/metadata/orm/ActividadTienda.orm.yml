@@ -1,0 +1,61 @@
+ActividadTienda:
+    type: entity
+    table: actividad_tienda
+    indexes:
+        idTipoActividad:
+            columns:
+                - idTipoActividad
+        idProducto:
+            columns:
+                - idProducto
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        idtienda:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: idTienda
+        cantidadproducto:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: cantidadProducto
+        fechaactividad:
+            type: datetime
+            nullable: false
+            column: fechaActividad
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    manyToOne:
+        idtipoactividad:
+            targetEntity: TipoActividad
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idTipoActividad:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idproducto:
+            targetEntity: Producto
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idProducto:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

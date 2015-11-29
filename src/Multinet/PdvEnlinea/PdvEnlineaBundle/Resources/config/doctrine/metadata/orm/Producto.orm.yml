@@ -1,0 +1,111 @@
+Producto:
+    type: entity
+    table: producto
+    indexes:
+        idDistribuidor:
+            columns:
+                - idDistribuidor
+        idCategoriaProducto:
+            columns:
+                - idCategoriaProducto
+        fk_producto_empresa_idx:
+            columns:
+                - id_empresa
+        fk_producto_unidadmedida_idx:
+            columns:
+                - id_unidad_medida
+        fk_producto_tipomoneda_idx:
+            columns:
+                - id_tipo_moneda
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        preciocosto:
+            type: decimal
+            nullable: true
+            precision: 16
+            scale: 2
+            column: precioCosto
+        precioventa:
+            type: decimal
+            nullable: false
+            precision: 16
+            scale: 2
+            column: precioVenta
+        fechavencimiento:
+            type: datetime
+            nullable: false
+            column: fechaVencimiento
+        createdat:
+            type: datetime
+            nullable: false
+            column: createdAt
+        updatedat:
+            type: datetime
+            nullable: false
+            column: updatedAt
+        status:
+            type: boolean
+            nullable: true
+        stock:
+            type: integer
+            nullable: true
+            unsigned: false
+    manyToOne:
+        iddistribuidor:
+            targetEntity: Fabricante
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idDistribuidor:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idcategoriaproducto:
+            targetEntity: CategoriaProducto
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCategoriaProducto:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idEmpresa:
+            targetEntity: Empresa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_empresa:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idUnidadMedida:
+            targetEntity: UnidadesMedida
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_unidad_medida:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idTipoMoneda:
+            targetEntity: TipoMoneda
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_tipo_moneda:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

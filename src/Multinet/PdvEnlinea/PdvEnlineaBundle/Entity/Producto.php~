@@ -1,0 +1,131 @@
+<?php
+
+namespace Multinet\PdvEnlinea\PdvEnlineaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Producto
+ *
+ * @ORM\Table(name="producto", indexes={@ORM\Index(name="idDistribuidor", columns={"idDistribuidor"}), @ORM\Index(name="idCategoriaProducto", columns={"idCategoriaProducto"}), @ORM\Index(name="fk_producto_empresa_idx", columns={"id_empresa"}), @ORM\Index(name="fk_producto_unidadmedida_idx", columns={"id_unidad_medida"}), @ORM\Index(name="fk_producto_tipomoneda_idx", columns={"id_tipo_moneda"})})
+ * @ORM\Entity
+ */
+class Producto
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="precioCosto", type="decimal", precision=16, scale=2, nullable=true)
+     */
+    private $preciocosto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="precioVenta", type="decimal", precision=16, scale=2, nullable=false)
+     */
+    private $precioventa;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaVencimiento", type="datetime", nullable=false)
+     */
+    private $fechavencimiento;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
+     */
+    private $updatedat;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="stock", type="integer", nullable=true)
+     */
+    private $stock;
+
+    /**
+     * @var \Fabricante
+     *
+     * @ORM\ManyToOne(targetEntity="Fabricante")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idDistribuidor", referencedColumnName="id")
+     * })
+     */
+    private $iddistribuidor;
+
+    /**
+     * @var \CategoriaProducto
+     *
+     * @ORM\ManyToOne(targetEntity="CategoriaProducto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idCategoriaProducto", referencedColumnName="id")
+     * })
+     */
+    private $idcategoriaproducto;
+
+    /**
+     * @var \Empresa
+     *
+     * @ORM\ManyToOne(targetEntity="Empresa")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_empresa", referencedColumnName="id")
+     * })
+     */
+    private $idEmpresa;
+
+    /**
+     * @var \UnidadesMedida
+     *
+     * @ORM\ManyToOne(targetEntity="UnidadesMedida")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_unidad_medida", referencedColumnName="id")
+     * })
+     */
+    private $idUnidadMedida;
+
+    /**
+     * @var \TipoMoneda
+     *
+     * @ORM\ManyToOne(targetEntity="TipoMoneda")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_tipo_moneda", referencedColumnName="id")
+     * })
+     */
+    private $idTipoMoneda;
+
+
+}

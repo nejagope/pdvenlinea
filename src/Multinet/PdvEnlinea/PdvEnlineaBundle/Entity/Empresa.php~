@@ -1,0 +1,122 @@
+<?php
+
+namespace Multinet\PdvEnlinea\PdvEnlineaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Empresa
+ *
+ * @ORM\Table(name="empresa", indexes={@ORM\Index(name="fk_empresa_tipoempresa_idx", columns={"id_tipo_empresa"}), @ORM\Index(name="fk_empresa_empresa_idx", columns={"id_sucursal"})})
+ * @ORM\Entity
+ */
+class Empresa
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nitEmpresa", type="string", length=255, nullable=false)
+     */
+    private $nitempresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombreEmpresa", type="string", length=255, nullable=false)
+     */
+    private $nombreempresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccionEmpresa", type="string", length=255, nullable=false)
+     */
+    private $direccionempresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mailEmpresa", type="string", length=255, nullable=false)
+     */
+    private $mailempresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contactoEmpresa", type="string", length=255, nullable=false)
+     */
+    private $contactoempresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefonoEmpresa", type="string", length=255, nullable=false)
+     */
+    private $telefonoempresa;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
+     */
+    private $updatedat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre_certificado", type="string", length=200, nullable=true)
+     */
+    private $nombreCertificado;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="estado_sucursal", type="boolean", nullable=true)
+     */
+    private $estadoSucursal;
+
+    /**
+     * @var \TipoEmpresa
+     *
+     * @ORM\ManyToOne(targetEntity="TipoEmpresa")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_tipo_empresa", referencedColumnName="id")
+     * })
+     */
+    private $idTipoEmpresa;
+
+    /**
+     * @var \Empresa
+     *
+     * @ORM\ManyToOne(targetEntity="Empresa")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_sucursal", referencedColumnName="id")
+     * })
+     */
+    private $idSucursal;
+
+
+}

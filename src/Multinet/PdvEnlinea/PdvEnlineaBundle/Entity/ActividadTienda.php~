@@ -1,0 +1,80 @@
+<?php
+
+namespace Multinet\PdvEnlinea\PdvEnlineaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ActividadTienda
+ *
+ * @ORM\Table(name="actividad_tienda", indexes={@ORM\Index(name="idTipoActividad", columns={"idTipoActividad"}), @ORM\Index(name="idProducto", columns={"idProducto"})})
+ * @ORM\Entity
+ */
+class ActividadTienda
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idTienda", type="integer", nullable=false)
+     */
+    private $idtienda;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cantidadProducto", type="integer", nullable=false)
+     */
+    private $cantidadproducto;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaActividad", type="datetime", nullable=false)
+     */
+    private $fechaactividad;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     */
+    private $updatedAt;
+
+    /**
+     * @var \TipoActividad
+     *
+     * @ORM\ManyToOne(targetEntity="TipoActividad")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idTipoActividad", referencedColumnName="id")
+     * })
+     */
+    private $idtipoactividad;
+
+    /**
+     * @var \Producto
+     *
+     * @ORM\ManyToOne(targetEntity="Producto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idProducto", referencedColumnName="id")
+     * })
+     */
+    private $idproducto;
+
+
+}

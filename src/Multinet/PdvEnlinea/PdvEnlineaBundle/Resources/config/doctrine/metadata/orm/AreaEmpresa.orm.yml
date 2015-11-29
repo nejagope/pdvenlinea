@@ -1,0 +1,30 @@
+AreaEmpresa:
+    type: entity
+    table: area_empresa
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        descripcion:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        status:
+            type: boolean
+            nullable: true
+            default: '1'
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    lifecycleCallbacks: {  }

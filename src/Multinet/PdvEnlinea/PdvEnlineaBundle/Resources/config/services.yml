@@ -1,0 +1,4 @@
+services:
+#    pdv.example:
+#        class: Multinet\PdvEnlinea\PdvEnlineaBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,50 @@
+DatosGface:
+    type: entity
+    table: datos_gface
+    indexes:
+        fk_datosgface_empresa_idx:
+            columns:
+                - id_empresa
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nitgface:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: Nitgface
+        direcciongface:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        estadogface:
+            type: boolean
+            nullable: true
+            default: '1'
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    manyToOne:
+        idEmpresa:
+            targetEntity: Empresa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_empresa:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
