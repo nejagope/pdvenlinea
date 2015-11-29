@@ -16,12 +16,12 @@ categoriaproducto_edit:
 
 categoriaproducto_update:
     path:     /update/{id}
-    defaults: { _controller: PdvBundle:CategoriaProducto:create }
+    defaults: { _controller: PdvBundle:CategoriaProducto:update }
 
 categoriaproducto_delete:
     path:     /delete/{id}
     defaults: { _controller: PdvBundle:CategoriaProducto:delete,id:null }
 
 categoriaproducto_show:
-    path:     /{id}/show
-    defaults: { _controller: PdvBundle:CategoriaProducto:show }
+    path:     /show/{id}
+    defaults: { _controller: PdvBundle:CategoriaProducto:show,id:null }

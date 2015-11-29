@@ -16,45 +16,45 @@ class ClienteType extends AbstractType
     {
         $builder
             ->add('nombrecliente',null,array(
-                'label' => '',
+                'label' => 'Nombre Cliente',
                 'attr'  => array(
-                    'form-control'
+                    'class' => 'form-control'
                 )
             ))
             ->add('nitcliente',null,array(
-                'label' => '',
+                'label' => 'Nit Cliente',
                 'attr'  => array(
-                    'form-control'
+                    'class' => 'form-control'
                 )
             ))
             ->add('direccioncliente',null,array(
-                'label' => '',
+                'label' => 'Dirección de Cliente',
                 'attr'  => array(
-                    'form-control'
+                    'class' => 'form-control'
                 )
             ))
             ->add('mailcliente',null,array(
-                'label' => '',
+                'label' => 'Mail Cliente',
                 'attr'  => array(
-                    'form-control'
+                    'class' => 'form-control'
                 )
             ))
             ->add('status',null,array(
                 'label' => '',
                 'attr'  => array(
-                    'form-control'
+                    'class' => 'form-control'
                 )
             ))
             ->add('createdat',null,array(
                 'label' => '',
                 'attr'  => array(
-                    'form-control'
+                    'class' => 'form-control'
                 )
             ))
             ->add('updatedat',null,array(
                 'label' => '',
                 'attr'  => array(
-                    'form-control'
+                    'class' => 'form-control'
                 )
             ))
         ;

@@ -16,12 +16,12 @@ producto_edit:
 
 producto_update:
     path:     /update/{id}
-    defaults: { _controller: PdvBundle:Fabricante:create }
+    defaults: { _controller: PdvBundle:Fabricante:update }
 
 producto_delete:
     path:     /delete/{id}
     defaults: { _controller: PdvBundle:Fabricante:delete,id:null }
 
 producto_show:
-    path:     /{id}/show
-    defaults: { _controller: PdvBundle:Fabricante:show }
+    path:     /show/{id}
+    defaults: { _controller: PdvBundle:Fabricante:show,id:null }
