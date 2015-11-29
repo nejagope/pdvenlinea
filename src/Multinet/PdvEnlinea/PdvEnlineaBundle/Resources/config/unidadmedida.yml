@@ -1,0 +1,27 @@
+unidadesmedida:
+    path:     /index
+    defaults: { _controller: PdvBundle:UnidadesMedida:index }
+
+unidadesmedida_new:
+    path:     /new/
+    defaults: { _controller: PdvBundle:UnidadesMedida:new }
+
+unidadesmedida_create:
+    path:     /create/
+    defaults: { _controller: PdvBundle:UnidadesMedida:create }
+
+unidadesmedida_edit:
+    path:     /edit/{id}
+    defaults: { _controller: PdvBundle:UnidadesMedida:edit,id:null }
+
+unidadesmedida_update:
+    path:     /update/{id}
+    defaults: { _controller: PdvBundle:UnidadesMedida:create }
+
+unidadesmedida_delete:
+    path:     /delete/{id}
+    defaults: { _controller: PdvBundle:UnidadesMedida:delete,id:null }
+
+unidadesmedida_show:
+    path:     /{id}/show
+    defaults: { _controller: PdvBundle:UnidadesMedida:show }

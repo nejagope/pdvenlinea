@@ -1,0 +1,27 @@
+cliente:
+    path:     /index
+    defaults: { _controller: PdvBundle:Cliente:index }
+
+cliente_new:
+    path:     /new/
+    defaults: { _controller: PdvBundle:Cliente:new }
+
+cliente_create:
+    path:     /create/
+    defaults: { _controller: PdvBundle:Cliente:create }
+
+cliente_edit:
+    path:     /edit/{id}
+    defaults: { _controller: PdvBundle:Cliente:edit,id:null }
+
+cliente_update:
+    path:     /update/{id}
+    defaults: { _controller: PdvBundle:Cliente:create }
+
+cliente_delete:
+    path:     /delete/{id}
+    defaults: { _controller: PdvBundle:Cliente:delete,id:null }
+
+cliente_show:
+    path:     /{id}/show
+    defaults: { _controller: PdvBundle:Cliente:show }

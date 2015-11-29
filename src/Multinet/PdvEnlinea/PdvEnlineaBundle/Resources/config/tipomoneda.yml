@@ -1,0 +1,27 @@
+tipomoneda:
+    path:     /index
+    defaults: { _controller: PdvBundle:TipoMoneda:index }
+
+tipomoneda_new:
+    path:     /new/
+    defaults: { _controller: PdvBundle:TipoMoneda:new }
+
+tipomoneda_create:
+    path:     /create/
+    defaults: { _controller: PdvBundle:TipoMoneda:create }
+
+tipomoneda_edit:
+    path:     /edit/{id}
+    defaults: { _controller: PdvBundle:TipoMoneda:edit,id:null }
+
+tipomoneda_update:
+    path:     /update/{id}
+    defaults: { _controller: PdvBundle:TipoMoneda:create }
+
+tipomoneda_delete:
+    path:     /delete/{id}
+    defaults: { _controller: PdvBundle:TipoMoneda:delete,id:null }
+
+tipomoneda_show:
+    path:     /{id}/show
+    defaults: { _controller: PdvBundle:TipoMoneda:show }

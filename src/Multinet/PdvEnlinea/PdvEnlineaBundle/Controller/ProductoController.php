@@ -29,7 +29,9 @@ class ProductoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('PdvBundle:Producto')->findAll();
+        $entities = $em->getRepository('PdvBundle:Producto')->findBy(array(
+            'status' => 1
+        ));
 
         return array(
             'entities' => $entities,
@@ -91,6 +93,8 @@ class ProductoController extends Controller
     public function newAction()
     {
         $entity = new Producto();
+        $entity->setCreatedAt(new \DateTime());
+        $entity->setUpdatedAt(new \DateTime());
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -136,7 +140,7 @@ class ProductoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PdvBundle:Producto')->find($id);
-
+        $entity->setUpdatedAt(new \DateTime());
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Producto entity.');
         }
@@ -162,7 +166,6 @@ class ProductoController extends Controller
     {
         $form = $this->createForm(new ProductoType(), $entity, array(
             'action' => $this->generateUrl('producto_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
@@ -191,6 +194,7 @@ class ProductoController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('producto_edit', array('id' => $id)));
@@ -216,7 +220,7 @@ class ProductoController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('PdvBundle:Producto')->find($id);
-
+            $entity->setStatus(0);
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Producto entity.');
             }
@@ -240,7 +244,7 @@ class ProductoController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('producto_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar Registro','attr' => array('class' => 'btn btn-danger btn-sm', 'onclick' => 'submitForm(this)', 'data-loading-text' => 'Eliminando Registro...')))
             ->getForm()
         ;
     }

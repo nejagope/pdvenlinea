@@ -1,0 +1,27 @@
+fabricante:
+    path:     /index
+    defaults: { _controller: PdvBundle:Fabricante:index }
+
+fabricante_new:
+    path:     /new/
+    defaults: { _controller: PdvBundle:Fabricante:new }
+
+fabricante_create:
+    path:     /create/
+    defaults: { _controller: PdvBundle:Fabricante:create }
+
+fabricante_edit:
+    path:     /edit/{id}
+    defaults: { _controller: PdvBundle:Fabricante:edit,id:null }
+
+fabricante_update:
+    path:     /update/{id}
+    defaults: { _controller: PdvBundle:Fabricante:create }
+
+fabricante_delete:
+    path:     /delete/{id}
+    defaults: { _controller: PdvBundle:Fabricante:delete,id:null }
+
+fabricante_show:
+    path:     /{id}/show
+    defaults: { _controller: PdvBundle:Fabricante:show }

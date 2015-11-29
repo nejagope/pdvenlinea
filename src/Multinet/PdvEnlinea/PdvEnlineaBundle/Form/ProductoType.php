@@ -15,19 +15,84 @@ class ProductoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre')
-            ->add('preciocosto')
-            ->add('precioventa')
-            ->add('fechavencimiento')
-            ->add('createdat')
-            ->add('updatedat')
-            ->add('status')
-            ->add('stock')
-            ->add('iddistribuidor')
-            ->add('idcategoriaproducto')
-            ->add('idEmpresa')
-            ->add('idUnidadMedida')
-            ->add('idTipoMoneda')
+            ->add('nombre',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('preciocosto',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('precioventa',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('fechavencimiento',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('createdat',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('updatedat',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('status',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('stock',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('iddistribuidor',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('idcategoriaproducto',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('idEmpresa',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('idUnidadMedida',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('idTipoMoneda',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
         ;
     }
     

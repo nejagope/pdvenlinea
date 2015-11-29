@@ -15,13 +15,48 @@ class ClienteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombrecliente')
-            ->add('nitcliente')
-            ->add('direccioncliente')
-            ->add('mailcliente')
-            ->add('status')
-            ->add('createdat')
-            ->add('updatedat')
+            ->add('nombrecliente',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'form-control'
+                )
+            ))
+            ->add('nitcliente',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'form-control'
+                )
+            ))
+            ->add('direccioncliente',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'form-control'
+                )
+            ))
+            ->add('mailcliente',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'form-control'
+                )
+            ))
+            ->add('status',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'form-control'
+                )
+            ))
+            ->add('createdat',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'form-control'
+                )
+            ))
+            ->add('updatedat',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'form-control'
+                )
+            ))
         ;
     }
     

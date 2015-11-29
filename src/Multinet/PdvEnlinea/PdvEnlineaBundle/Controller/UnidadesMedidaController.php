@@ -29,7 +29,9 @@ class UnidadesMedidaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('PdvBundle:UnidadesMedida')->findAll();
+        $entities = $em->getRepository('PdvBundle:UnidadesMedida')->findBy(array(
+            'status' => 1
+        ));
 
         return array(
             'entities' => $entities,
@@ -91,6 +93,8 @@ class UnidadesMedidaController extends Controller
     public function newAction()
     {
         $entity = new UnidadesMedida();
+        $entity->setCreatedAt(new \DateTime());
+        $entity->setUpdatedAt(new \DateTime());
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -136,7 +140,7 @@ class UnidadesMedidaController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PdvBundle:UnidadesMedida')->find($id);
-
+        $entity->setUpdatedAt(new \DateTime());
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find UnidadesMedida entity.');
         }
@@ -162,7 +166,6 @@ class UnidadesMedidaController extends Controller
     {
         $form = $this->createForm(new UnidadesMedidaType(), $entity, array(
             'action' => $this->generateUrl('unidadesmedida_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
@@ -173,7 +176,7 @@ class UnidadesMedidaController extends Controller
      * Edits an existing UnidadesMedida entity.
      *
      * @Route("/{id}", name="unidadesmedida_update")
-     * @Method("PUT")
+     * @Method("POST")
      * @Template("PdvBundle:UnidadesMedida:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
@@ -191,6 +194,7 @@ class UnidadesMedidaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $em->persist();
             $em->flush();
 
             return $this->redirect($this->generateUrl('unidadesmedida_edit', array('id' => $id)));
@@ -216,7 +220,7 @@ class UnidadesMedidaController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('PdvBundle:UnidadesMedida')->find($id);
-
+            $entity->setStatus(0);
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find UnidadesMedida entity.');
             }
@@ -240,7 +244,7 @@ class UnidadesMedidaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('unidadesmedida_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar Registro','attr' => array('class' => 'btn btn-danger btn-sm', 'onclick' => 'submitForm(this)', 'data-loading-text' => 'Eliminando Registro...')))
             ->getForm()
         ;
     }

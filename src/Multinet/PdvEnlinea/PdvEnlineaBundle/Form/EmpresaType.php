@@ -15,19 +15,84 @@ class EmpresaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nitempresa')
-            ->add('nombreempresa')
-            ->add('direccionempresa')
-            ->add('mailempresa')
-            ->add('contactoempresa')
-            ->add('telefonoempresa')
-            ->add('status')
-            ->add('createdat')
-            ->add('updatedat')
-            ->add('nombreCertificado')
-            ->add('estadoSucursal')
-            ->add('idTipoEmpresa')
-            ->add('idSucursal')
+            ->add('nitempresa',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('nombreempresa',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('direccionempresa',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('mailempresa',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('contactoempresa',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('telefonoempresa',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('status,null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            )')
+            ->add('createdat',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('updatedat',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('nombreCertificado',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('estadoSucursal',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('idTipoEmpresa',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('idSucursal',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
         ;
     }
     

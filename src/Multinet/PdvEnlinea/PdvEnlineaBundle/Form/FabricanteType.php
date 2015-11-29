@@ -15,13 +15,48 @@ class FabricanteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre')
-            ->add('direccion')
-            ->add('telefono')
-            ->add('contacto')
-            ->add('status')
-            ->add('createdat')
-            ->add('updatedat')
+            ->add('nombre',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('direccion',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('telefono',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('contacto',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('status',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('createdat',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('updatedat',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
         ;
     }
     
