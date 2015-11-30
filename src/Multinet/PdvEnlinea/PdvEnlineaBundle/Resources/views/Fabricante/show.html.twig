@@ -1,56 +1,71 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Fabricante</h1>
+<script type="text/javascript">
+    function submitForm(boton){
+        $(boton).button('loading');
+    }
+</script>
+    <div class="container">
+        <div class="page-header">
+            <h4>Fabricante <small>ID: {{entity.id}}</small></h4>
+            <a href="{{ path('fabricante') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+        </div>
+        <br/>
 
-    <table class="record_properties">
+    <table class="table table-hover">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th class="success col-md-3">Id</th>
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Nombre</th>
+                <th class="success col-md-3">Nombre</th>
                 <td>{{ entity.nombre }}</td>
             </tr>
             <tr>
-                <th>Direccion</th>
+                <th class="success col-md-3">Direccion</th>
                 <td>{{ entity.direccion }}</td>
             </tr>
             <tr>
-                <th>Telefono</th>
+                <th class="success col-md-3">Telefono</th>
                 <td>{{ entity.telefono }}</td>
             </tr>
             <tr>
-                <th>Contacto</th>
+                <th class="success col-md-3">Contacto</th>
                 <td>{{ entity.contacto }}</td>
             </tr>
             <tr>
-                <th>Status</th>
-                <td>{{ entity.status }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
+                <th class="success col-md-3">Createdat</th>
                 <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Updatedat</th>
+                <th class="success col-md-3">Updatedat</th>
                 <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>
     </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('fabricante') }}">
-            Back to the list
+<a href="{{ path('fabricante_edit', { 'id': entity.id }) }}" class="btn btn-success btn-sm">
+           <span class="glyphicon glyphicon-edit"></span> Editar Registro
         </a>
-    </li>
-    <li>
-        <a href="{{ path('fabricante_edit', { 'id': entity.id }) }}">
-            Edit
+        <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#divDeleteModal">
+           <span class="glyphicon glyphicon-remove"></span> Eliminar Registro
         </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+        <div class="modal fade" id="divDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Eliminar Registro</h4>
+              </div>
+              <div class="modal-body">
+                Está Seguro de Eliminar el registro: <strong>{{entity.nombre}}</strong>
+              </div>
+              <div class="modal-footer">
+                {{ form(delete_form) }}
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
 {% endblock %}
