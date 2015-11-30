@@ -1,49 +1,47 @@
 {% extends 'PdvBundle::layout.html.twig' %}
-
 {% block content -%}
-    <h1>TipoMoneda list</h1>
+<script type ="text/javascript">
+    function redireccionar(id){
+        window.location.href = "{{path('tipomoneda_show')}}/"+id;
+    }
+</script>
 
-    <table class="records_list">
+<div class = "container">
+    <div class="page-header">
+        <h4> Tipos de moneda <small>Listado</small></h4>
+        <a href="{{ path('tipomoneda_new')}}" style = "float:right" class="btn btn-success btn-sm">
+            <span class = "glyphicon-plus"> </span> Nuevo Tipo de Moneda </a>
+    </div>
+    </br>
+    {% if entities is not empty %}
+    
+    <table class="table table-hover">
+    
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Descripcion</th>
-                <th>Signo</th>
-                <th>Status</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
+                <th>Signo</th>                
+                <th>Createdat</th>                
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
-            <tr>
+            <tr onclick="redireccionar({{entity.id}})" style="cursor:pointer">
                 <td><a href="{{ path('tipomoneda_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.descripcion }}</td>
-                <td>{{ entity.signo }}</td>
-                <td>{{ entity.status }}</td>
+                <td>{{ entity.signo }}</td>                
                 <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('tipomoneda_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('tipomoneda_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
+                         
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('tipomoneda_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    {% else %}
+        <div class="alert alert-warning"> No existen registros </div>
+    {% endif %}
+       
+</div>
     {% endblock %}
+
