@@ -1,0 +1,110 @@
+{% extends 'PdvBundle::layout.html.twig' %}
+
+{% block content -%}
+<script type="text/javascript">
+    function getDetalle(){
+        var data = {
+            url: "{{ path('detallefactura') }}",
+            method: "POST",
+            beforeSend: function(){
+                $('#detalle').html('Cargado Detalle...')
+            },
+            success: function(result){
+                $('#detalle').html(result);
+            },
+            error: function(){  
+                alert('error al cargar detalle');
+            }
+        };   
+        $.ajax(data); 
+    }
+    $(document).ready(function(){
+        getDetalle();
+    });
+    function getModal(){
+        $('#modalDetalle').modal('show');
+    }
+
+</script>
+   <div class="container">
+     <div class="page-header">
+        <h4>Factura <small>#{{entity.id}}</small></h4>
+        <a href="{{ path('factura') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+    </div>
+    <br/>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th class="success">Cliente</th>
+            </tr>
+           
+        </tbody>
+    </table>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td class="success col-md-3">Nombre Cliente</td>
+                <td class="col-md-3">{{entity.idCliente}}</td>
+                <td class="success col-md-3">NIT Cliente</td>
+                <td class="col-md-3">{{entity.idCliente.nitcliente}}</td>
+            </tr>
+            <tr>
+                <td class="success col-md-3">Dirección Cliente</td>
+                <td class="col-md-3">{{entity.idCliente.direccioncliente}}</td>
+                <td class="success col-md-3">Mail Cliente</td>
+                <td class="col-md-3">{{ entity.idCliente.mailcliente}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th class="success">Sucursal</th>
+            </tr>
+           
+        </tbody>
+    </table>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td class="success col-md-3">Nombre Empresa</td>
+                <td class="col-md-3">{{entity.idSucursal}}</td>
+                <td class="success col-md-3">Dirección</td>
+                <td class="col-md-3">{{entity.idSucursal.direccionEmpresa}}</td>
+            </tr>
+            <tr>
+                <td class="success col-md-3">Dirección Cliente</td>
+                <td class="col-md-3">{{entity.idCliente.direccioncliente}}</td>
+                <td class="success col-md-3">Mail Cliente</td>
+                <td class="col-md-3">{{ entity.idCliente.mailcliente}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th class="success">Detalle <button data-toggle="modal" onclick="getModal()" class="btn btn-default btn-xs" style="float:right"><span class="glyphicon glyphicon-plus"> Agregar Detalle</span></button></th>
+            </tr>
+           
+        </tbody>
+    </table>
+    <br/>
+    <div id="detalle"></div>
+    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Agregar Detalle</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Agregar Detalle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

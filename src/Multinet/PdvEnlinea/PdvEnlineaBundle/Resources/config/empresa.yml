@@ -25,3 +25,7 @@ empresa_delete:
 empresa_show:
     path:     /show/{id}
     defaults: { _controller: PdvBundle:Empresa:show,id:null }
+
+empresa_registro:
+    path:     /success/{email}
+    defaults: { _controller: PdvBundle:Empresa:successEmail }

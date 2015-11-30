@@ -1,0 +1,44 @@
+<script type="text/javascript">
+	$.expr[':'].Contains = function(x, y, z){
+        return jQuery(x).text().toLowerCase().indexOf(z[3].toLowerCase())>=0;
+    };
+    $('#descripcion').keyup(function(){
+    	var descripcion = $('#descripcion').val();
+    	if(descripcion.length>0)
+        {	      		     
+        	$('#datos tr').show();   	
+        	$("#datos tr td.descripcion").not(":Contains('"+descripcion+"')").parent().hide();		        	
+        }else{
+            $('#datos tr').show();     
+        }
+    });
+    $('#id').keyup(function(){
+        var id = $('#id').val();
+        if(id.length>0)
+        {                    
+            $('#datos tr').show();      
+            $("#datos tr td.id").not(":Contains('"+id+"')").parent().hide();                  
+        }else{
+            $('#datos tr').show();     
+        }
+    });
+    $(document).ready(function(){
+    	$('#id').focus();
+    });
+    function asignarValor(valor){
+    	$('#{{objeto}}').val(valor);
+    	$('#search').dialog('close');
+    }
+</script>
+<table class="table table-hover" style="font-size:11px" id="datos">
+    <tr>
+        <td><input type="text" class="form-control" placeholder="Ingrese Valor a buscar" id="id"/></td>
+        <td><input type="text" class="form-control" placeholder="Ingrese Valor a buscar" id="descripcion"/></td>
+    </tr>
+{% for dato in datos %}
+	<tr ondblclick="asignarValor({{dato.no}})">
+        <td class="id">{{dato.id}}</td>
+		<td class="descripcion">{{dato.descripcion}}</td>
+	</tr>
+{% endfor %}
+</table>

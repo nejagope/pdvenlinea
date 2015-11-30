@@ -30,6 +30,24 @@ empresa:
     resource: "@PdvBundle/Resources/config/empresa.yml"
     prefix:   /empresa/
 
+factura:
+    resource: "@PdvBundle/Resources/config/factura.yml"
+    prefix:   /factura/
+
+detallefactura:
+    resource: "@PdvBundle/Resources/config/detallefactura.yml"
+    prefix:   /detallefactura/
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+login:
+    pattern: /login
+    defaults: { _controller: PdvBundle:Login:login }
+    
+check_path:
+    pattern: /check
+    
+logout:
+    pattern: /logout

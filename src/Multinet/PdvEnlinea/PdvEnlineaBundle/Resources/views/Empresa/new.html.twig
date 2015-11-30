@@ -1,6 +1,4 @@
-{% extends 'PdvBundle::layout.html.twig' %}
 
-{% block content -%}
 <script type="text/javascript">
 	function submitForm(boton){
 		if ($('#multinet_pdvonline_pdvonlinebundle_empresa_descripcion').val() != "") {
@@ -8,26 +6,65 @@
 		};
 	}
 </script>
+<head>
+        <title>PDV en Linea</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/pdv/css/style.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+     
+        <div class="navbar navbar-default">
+          <div class="container">
+            <div class="navbar-header">
+              <a href="../" class="navbar-brand">
+                <span class="glyphicon glyphicon-home"></span> PDV En Línea</a>
+              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a> <span class="glyphicon glyphicon-fire"> </span> Acerca de Nosotros </a>       
+                </li>           
+                <li>
+                  <a><span class="glyphicon glyphicon-send"> </span> Contáctenos</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
 <div class="container">
      <div class="page-header">
-        <h4>Empresa <small>Creación</small></h4>
-        <a href="{{ path('empresa') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+        <h4>Empresa <small>Registro</small></h4>
     </div>
+    
+        <p class="text text-danger"><strong>Nota:</strong> El Correo electrónico debe ser válido. Le serán enviados los datos de registro</p>
+
 	<form action="{{ path('empresa_create') }}" method="POST">
 		{{form_errors(form)}}
         {{form_widget(form._token)}}
         {{ form_label(form.nitempresa) }}
         {{ form_widget(form.nitempresa)}}
+        {{ form_label(form.idTipoEmpresa) }}
+        {{ form_widget(form.idTipoEmpresa)}}
         {{ form_label(form.nombreempresa) }}
         {{ form_widget(form.nombreempresa)}}
         {{ form_label(form.direccionempresa) }}
         {{ form_widget(form.direccionempresa)}}
         {{ form_label(form.contactoempresa) }}
         {{ form_widget(form.contactoempresa)}}
-        {{ form_label(form.mailempresa) }}
+        <span class="text text-danger" style="font-size:15px">*</span>{{ form_label(form.mailempresa) }}
         {{ form_widget(form.mailempresa)}}
         {{ form_label(form.telefonoempresa) }}
         {{ form_widget(form.telefonoempresa)}}
+       
+        
         <div style="display:none">
 	        {{ form_label(form.status) }}
 	        {{ form_widget(form.status)}}
@@ -41,4 +78,3 @@
 	</form>
 
 </div>
-{% endblock %}

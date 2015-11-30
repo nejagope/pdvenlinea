@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<script type="text/javascript">
+  function Redirect() 
+  {  
+    window.location="{{ path('pdv_homepage') }}"; 
+  } 
+  setTimeout('Redirect()', 5000);   
+</script>
+</script>
 <html>
     <head>
         <title>PDV en Linea</title>
@@ -8,7 +16,6 @@
         <meta charset="UTF-8" />
     </head>
     <body>
-     
         <div class="navbar navbar-default">
           <div class="container">
             <div class="navbar-header">
@@ -32,35 +39,9 @@
             </div>
           </div>
         </div>
-       
-
-
-        <section class="home full-height">
-			<img src="{{ asset('bundles/pdv/images/logo.png') }}" style="margin-top:-300px;width:500px">
-            <div class="container">
-                <div class="row center">
-          			
-
-                    <div class="col-3 boton" onclick="window.location.href='{{ path('empresa_new') }}'">
-                        <span class="glyphicon glyphicon-cloud"></span> Registrarse
-                    </div>
-
-                    <div class="col-3 boton" onclick="window.location.href='{{ path('login') }}'">
-                        <span class="glyphicon glyphicon-ok-circle"> </span> Iniciar Sesión
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        © Multinet - 2015
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </body>
-</html>
+      </body>
+      <div class="container">
+        <h2>Se ha enviado un correo electrónico a la cuenta de correo: <strong>{{email}}</strong></h2>
+        <h1>Redireccionado a registro...</h1>
+      </div>
+  </html>

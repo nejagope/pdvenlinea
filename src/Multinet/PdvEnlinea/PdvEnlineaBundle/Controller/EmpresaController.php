@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Multinet\PdvEnlinea\PdvEnlineaBundle\Entity\Empresa;
+use Multinet\PdvEnlinea\PdvEnlineaBundle\Entity\Empleado;
 use Multinet\PdvEnlinea\PdvEnlineaBundle\Form\EmpresaType;
 
 /**
@@ -52,8 +53,37 @@ class EmpresaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('empresa_show', array('id' => $entity->getId())));
+            $password = $this->randomPassword();
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Datos de Registro - PDV en Línea')
+                ->setFrom('registro@posenlinea.com')
+                ->setTo($entity->getMailempresa())
+                ->setBody(
+                  $this->renderView(
+                    'PdvBundle:Correos:correo.txt.twig',
+                        array(
+                          'empresa' => $entity->getNombreempresa(),
+                          'usuario' => $entity->getNitempresa(),
+                          'clave' => $password
+                          ),
+                        'text/html'
+                  )
+                )
+            ;
+            $this->get('mailer')->send($message);
+            $factory = $this->get('security.encoder_factory');
+            $empleado = new Empleado();
+            $encoder = $factory->getEncoder($empleado);
+            $contrasenia = $encoder->encodePassword($password, $empleado->getSalt());
+            $empleado->setUsuariosistema($entity->getNitempresa());
+            $empleado->setPasswordsistema($contrasenia);
+            $empleado->setCreatedat(new \DateTime());
+            $empleado->setUpdatedat(new \DateTime());
+            $empleado->setStatus(1);
+            $empleado->setRol('ROLE_ADMIN');
+            $em->persist($empleado);
+            $em->flush();
+            return $this->redirect($this->generateUrl('empresa_registro', array('email' => $entity->getMailempresa())));
         }
 
         return array(
@@ -243,5 +273,20 @@ class EmpresaController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+    private function randomPassword(){
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
+    }
+    public function successEmailAction($email){
+        return $this->render('PdvBundle:Empresa:successemail.html.twig',array(
+            'email' => $email
+        ));
     }
 }

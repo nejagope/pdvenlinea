@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EmpresaType extends AbstractType
+class FacturaType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,42 +15,6 @@ class EmpresaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nitempresa',null,array(
-                'label' => 'NIT Empresa',
-                'attr'  => array(
-                    'class' => 'form-control'
-                )
-            ))
-            ->add('nombreempresa',null,array(
-                'label' => 'Nombre Empresa',
-                'attr'  => array(
-                    'class' => 'form-control'
-                )
-            ))
-            ->add('direccionempresa',null,array(
-                'label' => 'Direccion Empresa',
-                'attr'  => array(
-                    'class' => 'form-control'
-                )
-            ))
-            ->add('mailempresa',null,array(
-                'label' => 'Mail Contacto',
-                'attr'  => array(
-                    'class' => 'form-control'
-                )
-            ))
-            ->add('contactoempresa',null,array(
-                'label' => 'Contacto Empresa',
-                'attr'  => array(
-                    'class' => 'form-control'
-                )
-            ))
-            ->add('telefonoempresa',null,array(
-                'label' => 'Telefono Empresa',
-                'attr'  => array(
-                    'class' => 'form-control'
-                )
-            ))
             ->add('status',null,array(
                 'label' => '',
                 'attr'  => array(
@@ -69,26 +33,32 @@ class EmpresaType extends AbstractType
                     'class' => 'form-control'
                 )
             ))
-            ->add('nombreCertificado',null,array(
+            ->add('fechaFactura',null,array(
                 'label' => '',
                 'attr'  => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('estadoSucursal',null,array(
+            ->add('estadoCierre',null,array(
                 'label' => '',
                 'attr'  => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('idTipoEmpresa',null,array(
-                'label' => 'Tipo de Empresa',
+            ->add('idempleado',null,array(
+                'label' => '',
                 'attr'  => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('idSucursal',null,array(
-                'label' => '',
+                'label' => 'Sucursal',
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('idCliente',null,array(
+                'label' => 'Cliente',
                 'attr'  => array(
                     'class' => 'form-control'
                 )
@@ -102,7 +72,7 @@ class EmpresaType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Multinet\PdvEnlinea\PdvEnlineaBundle\Entity\Empresa'
+            'data_class' => 'Multinet\PdvEnlinea\PdvEnlineaBundle\Entity\Factura'
         ));
     }
 
@@ -111,6 +81,6 @@ class EmpresaType extends AbstractType
      */
     public function getName()
     {
-        return 'multinet_pdvenlinea_pdvenlineabundle_empresa';
+        return 'multinet_pdvenlinea_pdvenlineabundle_factura';
     }
 }
