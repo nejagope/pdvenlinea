@@ -194,7 +194,7 @@ class UnidadesMedidaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist();
+            $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('unidadesmedida_edit', array('id' => $id)));
