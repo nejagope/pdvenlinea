@@ -20,7 +20,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Eliminar</th>
+                <th></th>
                 <th>Producto</th>
                 <th>Cantidad</th>
                 <th>Precio</th>
@@ -33,12 +33,14 @@
         {% for entity in entities %}
         {% set suma = suma + (entity.cantidad * entity.idProducto.precioVenta) %}
             <tr>
-                <td><button type="button" onclick="eliminar({{entity.id}},this)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>Eliminar</button></td>
+                
+                <td>{% if entity.idfactura.estadoCierre == 0 %}<button type="button" onclick="eliminar({{entity.id}},this)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>Eliminar</button>{% endif %}</td>
+                
                 <td>{{entity.idProducto}}</td>
                 <td>{{ entity.cantidad }}</td>
                 <td>Q. {{entity.idProducto.precioVenta}}</td>
                 <td>Q. {{ entity.cantidad * entity.idProducto.precioVenta }}</td>
-
+                
             </tr>
         {% endfor %}
         <tr>

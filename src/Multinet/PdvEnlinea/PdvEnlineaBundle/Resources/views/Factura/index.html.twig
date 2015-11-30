@@ -19,7 +19,6 @@
             <tr>
                 <th># de Factura</th>
                 <th>Fecha de Creación</th>
-                <th>Fecha de Factura</th>
                 <th>Cliente</th>
             </tr>
         </thead>
@@ -28,7 +27,6 @@
             <tr onclick="redireccionar({{entity.id}})" style="cursor:pointer">
                 <td><a href="{{ path('factura_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.fechaFactura %}{{ entity.fechaFactura|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{entity.idCliente}}</td>
             </tr>
         {% endfor %}

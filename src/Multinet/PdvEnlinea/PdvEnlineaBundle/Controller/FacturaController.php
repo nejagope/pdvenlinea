@@ -32,7 +32,8 @@ class FacturaController extends Controller
         $entities = $em->getRepository('PdvBundle:Factura')->findBy(array(
             'status' => 1
         ));
-
+        $smtp = $em->getConnection()->prepare('UPDATE pdvonline.factura SET estado_cierre = 1 WHERE estado_cierre = 0');
+        $smtp->execute();
         return array(
             'entities' => $entities,
         );
