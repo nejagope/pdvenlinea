@@ -18,6 +18,7 @@ class ReportesController extends Controller
                      ->where('f.createdat = :fecha')
                      ->setParameter('fecha',$today->format('Y-m-d'))
                      ->groupBy('f.id')
+                     ->orderBy('total','DESC')
                      ->getQuery()->getResult();
         return $this->render('PdvBundle:Reportes:ventasdiarias.html.twig',array(
             'reporte' => $reporte
@@ -32,6 +33,7 @@ class ReportesController extends Controller
                      ->join("PdvBundle:Producto",'p',\Doctrine\ORM\Query\Expr\Join::WITH,"df.idproducto = p.id")
                      ->join("PdvBundle:Empleado",'e',\Doctrine\ORM\Query\Expr\Join::WITH,"f.idempleado = e.id")
                      ->groupBy('e.id')
+                     ->orderBy('total','DESC')
                      ->getQuery()->getResult();
         return $this->render('PdvBundle:Reportes:ventasporvendedor.html.twig',array(
             'reporte' => $reporte
@@ -45,6 +47,7 @@ class ReportesController extends Controller
                      ->join("PdvBundle:DetalleFactura",'df',\Doctrine\ORM\Query\Expr\Join::WITH,"f.id = df.idfactura")
                      ->join("PdvBundle:Producto",'p',\Doctrine\ORM\Query\Expr\Join::WITH,"df.idproducto = p.id")
                      ->groupBy('p.id')
+                     ->orderBy('total','DESC')
                      ->getQuery()->getResult();
         return $this->render('PdvBundle:Reportes:productosmasvendidos.html.twig',array(
             'reporte' => $reporte
@@ -59,6 +62,7 @@ class ReportesController extends Controller
                      ->join("PdvBundle:Producto",'p',\Doctrine\ORM\Query\Expr\Join::WITH,"df.idproducto = p.id")
                      ->join("PdvBundle:Cliente",'c',\Doctrine\ORM\Query\Expr\Join::WITH,"f.idCliente= c.id")
                      ->groupBy('c.id')
+                     ->orderBy('total','DESC')
                      ->getQuery()->getResult();
         return $this->render('PdvBundle:Reportes:clientescompras.html.twig',array(
             'reporte' => $reporte
