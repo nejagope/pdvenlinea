@@ -1,16 +1,34 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>UnidadesMedida edit</h1>
+    <script type="text/javascript">
+	function submitForm(boton){
+		if ($('#multinet_pdvonline_pdvonlinebundle_cliente_descripcion').val() != "") {
+			$(boton).button('loading');
+		};
+	}
+</script>
+<div class="container">
+     <div class="page-header">
+        <h4>Unidades de Medida <small>Edición</small></h4>
+        <a href="{{ path('unidadesmedida') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+    </div>
+	<form action="{{ path('unidadesmedida_update',{'id':entity.id}) }}" method="POST">
+		{{form_errors(edit_form)}}
+        {{form_widget(edit_form._token)}}
+        {{ form_label(edit_form.descripcion) }}
+        {{ form_widget(edit_form.descripcion)}}
+        <div style="display:none">
+	        {{ form_label(edit_form.status) }}
+	        {{ form_widget(edit_form.status)}}
+	        {{ form_label(edit_form.createdAt) }}
+	        {{ form_widget(edit_form.createdAt)}}
+	        {{ form_label(edit_form.updatedAt) }}
+	        {{ form_widget(edit_form.updatedAt)}}
+        </div>
+        <br/>
+        <button type="submit" onclick="submitForm(this)" data-loading-text="Guardando..." class="btn btn-success btn-sm"><span class="glyphicon glyphicon-refresh"></span> Guardar Cambios</button>
+	</form>
 
-    {{ form(edit_form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('unidadesmedida') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+</div>
 {% endblock %}
