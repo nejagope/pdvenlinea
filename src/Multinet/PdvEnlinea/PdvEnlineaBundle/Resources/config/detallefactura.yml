@@ -16,7 +16,7 @@ detallefactura_edit:
 
 detallefactura_update:
     path:     /update/{id}
-    defaults: { _controller: PdvBundle:DetalleFactura:update }
+    defaults: { _controller: PdvBundle:DetalleFactura:update,id:null }
 
 detallefactura_delete:
     path:     /delete/{id}

@@ -1,4 +1,32 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 {% block content %}
+<div class="container">
+	<div class="page-header">
+		<h3>Ventas del dia
+			<button class="btn btn-success btn-sm" style="float:right"><span class="glyphicon glyphicon-download"></span> Descargar Reporte</button>
+		</h3>
+	</div>
+		<table class="table table-hover">
+			<tr>
+				<th>No. Factura</th>
+				<th>Fecha de factura</th>
+				<th>Monto</th>
+			</tr>
+			{% set suma = 0 %}
+			{% for reporte in reporte %}
+			{% set suma = suma + reporte.total %}
+			<tr>
+				<td class="col-md-3">{{ "%08d" | format(reporte.id) }}</td>
+				<td>{{ reporte.createdat | date('d-m-Y')}}</td>
+				<td>Q. {{ reporte.total }}</td>
+			</tr>
+			{% endfor %}
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="warning">Q. {{suma}}</td>
+			</tr>
+		</table>
 
+</div>
 {% endblock %}

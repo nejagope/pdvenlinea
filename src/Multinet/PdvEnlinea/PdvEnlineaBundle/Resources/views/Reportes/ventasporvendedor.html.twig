@@ -1,4 +1,29 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 {% block content %}
+<div class="container">
+	<div class="page-header">
+		<h3>Ventas por vendedor
+			<button class="btn btn-success btn-sm" style="float:right"><span class="glyphicon glyphicon-download"></span> Descargar Reporte</button>
+		</h3>
+	</div>
+		<table class="table table-hover">
+			<tr>
+				<th>Vendedor</th>
+				<th>Monto</th>
+			</tr>
+			{% set suma = 0 %}
+			{% for reporte in reporte %}
+			{% set suma = suma + reporte.total %}
+			<tr>
+				<td class="col-md-4">{{ reporte.nombres }} {{ reporte.apellidos }}</td>
+				<td>Q. {{ reporte.total }}</td>
+			</tr>
+			{% endfor %}
+			<tr>
+				<td></td>
+				<td class="warning">Q. {{suma}}</td>
+			</tr>
+		</table>
 
+</div>
 {% endblock %}

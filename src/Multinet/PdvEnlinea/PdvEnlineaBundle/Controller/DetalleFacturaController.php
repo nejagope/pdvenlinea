@@ -93,6 +93,7 @@ class DetalleFacturaController extends Controller
     public function newAction($idFactura)
     {
         $entity = new DetalleFactura();
+        $entity->setCreatedAt(new \DateTime());
         $em = $this->getDoctrine()->getManager();
         $factura = $em->getRepository('PdvBundle:Factura')->find($idFactura);
         $entity->setIdFactura($factura);
