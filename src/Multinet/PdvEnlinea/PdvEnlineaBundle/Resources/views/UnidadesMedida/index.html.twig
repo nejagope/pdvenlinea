@@ -1,47 +1,43 @@
 {% extends 'PdvBundle::layout.html.twig' %}
-
 {% block content -%}
-    <h1>UnidadesMedida list</h1>
 
-    <table class="records_list">
+ <script type ="text/javascript">
+    function redireccionar(id){
+        window.location.href = "{{path('unidadesmedida_show')}}/"+id;
+    }
+</script>
+
+<div class = "container">
+    <div class="page-header">
+        <h4> Unidades de Medida <small>Listado</small></h4>
+        <a href="{{ path('unidadesmedida_new')}}" style = "float:right" class="btn btn-success btn-sm">
+            <span class = "glyphicon-plus"> </span> Nueva Unidad de Medida </a>
+    </div>
+    </br>
+    {% if entities is not empty %}
+    
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Descripcion</th>
-                <th>Status</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
+                <th>Descripcion</th>                
+                <th>Createdat</th>                
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
-            <tr>
+            <tr onclick="redireccionar({{entity.id}})" style="cursor:pointer">
                 <td><a href="{{ path('unidadesmedida_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.descripcion }}</td>
-                <td>{{ entity.status }}</td>
-                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('unidadesmedida_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('unidadesmedida_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
+            
+                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>                            
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('unidadesmedida_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    {% else %}
+        <div class="alert alert-warning"> No existen registros </div>
+    {% endif %}
+       
+</div>
     {% endblock %}

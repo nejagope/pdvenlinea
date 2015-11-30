@@ -1,53 +1,46 @@
 {% extends 'PdvBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Fabricante list</h1>
+<script type ="text/javascript">
+    function redireccionar(id){
+        window.location.href = "{{path('fabricante_show')}}/"+id;
+    }
+</script>
 
-    <table class="records_list">
+<div class = "container">
+    <div class="page-header">
+        <h4> Fabricantes <small>Listado</small></h4>
+        <a href="{{ path('fabricante_new')}}" style = "float:right" class="btn btn-success btn-sm">
+            <span class = "glyphicon-plus"> </span> Nuevo Fabricante </a>
+    </div>
+    </br>
+    {% if entities is not empty %}
+    
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
-                <th>Contacto</th>
-                <th>Status</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
+                <th>Direccion</th>               
+                <th>Createdat</th>               
             </tr>
         </thead>
+
         <tbody>
         {% for entity in entities %}
-            <tr>
+            <tr onclick="redireccionar({{entity.id}})" style="cursor:pointer">
                 <td><a href="{{ path('fabricante_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.nombre }}</td>
-                <td>{{ entity.direccion }}</td>
-                <td>{{ entity.telefono }}</td>
-                <td>{{ entity.contacto }}</td>
-                <td>{{ entity.status }}</td>
-                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('fabricante_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('fabricante_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
+                <td>{{ entity.direccion }}</td>                
+                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>                
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('fabricante_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    
+    {% else %}
+        <div class="alert alert-warning"> No existen registros </div>
+    {% endif %}
+       
+</div>
     {% endblock %}
