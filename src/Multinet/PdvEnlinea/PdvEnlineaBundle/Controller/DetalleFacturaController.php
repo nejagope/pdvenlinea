@@ -21,15 +21,17 @@ class DetalleFacturaController extends Controller
     /**
      * Lists all DetalleFactura entities.
      *
-     * @Route("/", name="detallefactura")
+     * @Route("/{idFactura}", name="detallefactura")
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($idFactura)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('PdvBundle:DetalleFactura')->findAll();
+        $entities = $em->getRepository('PdvBundle:DetalleFactura')->findBy(array(
+            'idfactura' => $idFactura
+        ));
 
         return array(
             'entities' => $entities,
@@ -38,11 +40,11 @@ class DetalleFacturaController extends Controller
     /**
      * Creates a new DetalleFactura entity.
      *
-     * @Route("/", name="detallefactura_create")
+     * @Route("/{idFactura}", name="detallefactura_create")
      * @Method("POST")
      * @Template("PdvBundle:DetalleFactura:new.html.twig")
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request,$idFactura)
     {
         $entity = new DetalleFactura();
         $form = $this->createCreateForm($entity);
@@ -53,7 +55,7 @@ class DetalleFacturaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('detallefactura_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('factura_show', array('id' => $idFactura)));
         }
 
         return array(
@@ -84,18 +86,22 @@ class DetalleFacturaController extends Controller
     /**
      * Displays a form to create a new DetalleFactura entity.
      *
-     * @Route("/new", name="detallefactura_new")
+     * @Route("/new/{idFactura}", name="detallefactura_new")
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
+    public function newAction($idFactura)
     {
         $entity = new DetalleFactura();
+        $em = $this->getDoctrine()->getManager();
+        $factura = $em->getRepository('PdvBundle:Factura')->find($idFactura);
+        $entity->setIdFactura($factura);
         $form   = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'idFactura' => $idFactura
         );
     }
 
@@ -210,22 +216,21 @@ class DetalleFacturaController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
+     
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('PdvBundle:DetalleFactura')->find($id);
-
+            $factura = $entity->getIdfactura();
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find DetalleFactura entity.');
             }
 
             $em->remove($entity);
             $em->flush();
-        }
+       
 
-        return $this->redirect($this->generateUrl('detallefactura'));
+        return $this->redirect($this->generateUrl('factura_show',array(
+            'id' => $factura
+        )));
     }
 
     /**

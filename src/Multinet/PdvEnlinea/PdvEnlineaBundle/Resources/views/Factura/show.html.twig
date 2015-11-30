@@ -4,7 +4,7 @@
 <script type="text/javascript">
     function getDetalle(){
         var data = {
-            url: "{{ path('detallefactura') }}",
+            url: "{{ path('detallefactura') }}/{{entity.id}}",
             method: "POST",
             beforeSend: function(){
                 $('#detalle').html('Cargado Detalle...')
@@ -18,11 +18,28 @@
         };   
         $.ajax(data); 
     }
+    function getNewDetalle(){
+        var data = {
+            url: "{{ path('detallefactura_new') }}/"+{{entity.id}},
+            method: "POST",
+            beforeSend: function(){
+                $('#divFormDetalle').html('Cargado Detalle...')
+            },
+            success: function(result){
+                $('#divFormDetalle').html(result);
+            },
+            error: function(){  
+                alert('error al cargar formulario');
+            }
+        };   
+        $.ajax(data); 
+    }
     $(document).ready(function(){
         getDetalle();
     });
     function getModal(){
         $('#modalDetalle').modal('show');
+        getNewDetalle();
     }
 
 </script>
@@ -80,6 +97,7 @@
             </tr>
         </tbody>
     </table>
+
     <table class="table table-hover">
         <tbody>
             <tr>
@@ -89,20 +107,21 @@
         </tbody>
     </table>
     <br/>
+
     <div id="detalle"></div>
+</div>    
     <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Agregar Detalle</h4>
           </div>
-          <div class="modal-body">
-            ...
+          <div class="modal-body" style="height:150px">
+            <div id="divFormDetalle"></div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Agregar Detalle</button>
+            <button onclick="$('#formNewDetalleFactura').submit()" type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>

@@ -1,14 +1,14 @@
 detallefactura:
-    path:     /index
-    defaults: { _controller: PdvBundle:DetalleFactura:index }
+    path:     /index/{idFactura}
+    defaults: { _controller: PdvBundle:DetalleFactura:index,idFactura:null }
 
 detallefactura_new:
-    path:     /new/
-    defaults: { _controller: PdvBundle:DetalleFactura:new }
+    path:     /new/{idFactura}
+    defaults: { _controller: PdvBundle:DetalleFactura:new,idFactura:null }
 
 detallefactura_create:
-    path:     /create/
-    defaults: { _controller: PdvBundle:DetalleFactura:create }
+    path:     /create/{idFactura}
+    defaults: { _controller: PdvBundle:DetalleFactura:create,idFactura:null }
 
 detallefactura_edit:
     path:     /edit/{id}

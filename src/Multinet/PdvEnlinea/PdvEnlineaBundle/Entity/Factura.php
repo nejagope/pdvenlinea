@@ -281,4 +281,7 @@ class Factura
     {
         return $this->idCliente;
     }
+    public function __toString(){
+        return (string) $this->getId();
+    }
 }

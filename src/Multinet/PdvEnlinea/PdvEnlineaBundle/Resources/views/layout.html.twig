@@ -33,18 +33,17 @@
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-stats"></span> Reportes <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a href="#">Ventas Diarias</a></li>
-                <li><a href="#">Ventas por Método de Pago</a></li>
-                <li><a href="#">Ventas por Vendedor</a></li>
-                <li><a href="#">Productos más vendidos</a></li>
-                <li><a href="#">Clientes que más compran</a></li>
+                <li><a href="{{ path('ventasdiarias')}}">Ventas Diarias</a></li>
+                <li><a href="{{ path('ventasporvendedor')}}">Ventas por Vendedor</a></li>
+                <li><a href="{{ path('productosmasvendidos')}}">Productos más vendidos</a></li>
+                <li><a href="{{ path('clientescompras')}}">Clientes que más compran</a></li>
               </ul>
             </li>
             {% endif %}
              <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-th-list"></span> Operaciones <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a href="#">Facturación</a></li>
+                <li><a href="{{ path('factura') }}">Facturación</a></li>
               </ul>
             </li>
             <li>

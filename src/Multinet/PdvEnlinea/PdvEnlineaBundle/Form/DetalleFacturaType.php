@@ -15,12 +15,42 @@ class DetalleFacturaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cantidad')
-            ->add('subtotal')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('idfactura')
-            ->add('idproducto')
+            ->add('cantidad',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control' 
+                )
+            ))
+            ->add('subtotal',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control' 
+                )
+            ))
+            ->add('createdAt',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control' 
+                )
+            ))
+            ->add('updatedAt',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control' 
+                )
+            ))
+            ->add('idfactura',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control' 
+                )
+            ))
+            ->add('idproducto',null,array(
+                'label' => '',
+                'attr'  => array(
+                    'class' => 'form-control' 
+                )
+            ))
         ;
     }
     
