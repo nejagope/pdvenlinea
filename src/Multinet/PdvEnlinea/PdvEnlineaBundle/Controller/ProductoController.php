@@ -17,6 +17,45 @@ use Multinet\PdvEnlinea\PdvEnlineaBundle\Form\ProductoType;
  */
 class ProductoController extends Controller
 {
+    public function createFormUpload(){
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('producto_upload'))
+            ->setMethod('POST')
+            ->add('file', 'file', array('label' => 'Archivo','attr' => array('class' => 'form-control')))
+            ->add('submit', 'submit', array('label' => 'Upload','attr' => array('class' => 'btn btn-success btn-sm')))
+            ->getForm()
+        ;
+    }
+    public function uploadAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createFormUpload();
+        $form->handleRequest($request);
+        $file = $form->get('file');
+        $filename = $file->getData();
+        $row = 3;
+        if (($handle = fopen($filename, "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, 100, ";")) !== FALSE) {
+                $num = count($data);
+                $row++;
+                foreach ($data as $key) {
+                    $producto = new Producto();
+                    $data = explode(",", $key);
+                    $tipoMoneda = $em->getRepository('PdvBundle:TipoMoneda')->find($key[2]);
+                    $producto->setIdTipoMoneda($tipoMoneda);
+                    $producto->setNombre($key[6]);
+                    $producto->setPreciocosto($key[7]);
+                    $producto->setPrecioventa($key[8]);
+                    $producto->setCreatedat(new \DateTime());
+                    $producto->setUpdatedat(new \DateTime());
+                    $producto->setStatus(1);
+                    $producto->setStock($key[13]);
+                    $em->persist($producto);
+                    $em->flush();
+                }
+            }
+            fclose($handle);
+        }
+    }
 
     /**
      * Lists all Producto entities.
@@ -32,9 +71,10 @@ class ProductoController extends Controller
         $entities = $em->getRepository('PdvBundle:Producto')->findBy(array(
             'status' => 1
         ));
-
+        $form = $this->createFormUpload();
         return array(
             'entities' => $entities,
+            'form' => $form->createView()
         );
     }
     /**
