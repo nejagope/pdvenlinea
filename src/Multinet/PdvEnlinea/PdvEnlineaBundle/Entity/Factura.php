@@ -26,7 +26,7 @@ class Factura
      *
      * @ORM\Column(name="status", type="boolean", nullable=true)
      */
-    private $status;
+    private $status = true;
 
     /**
      * @var \DateTime
@@ -280,5 +280,8 @@ class Factura
     public function getIdCliente()
     {
         return $this->idCliente;
+    }
+    public function __toString(){
+        return (string) $this->getId();
     }
 }

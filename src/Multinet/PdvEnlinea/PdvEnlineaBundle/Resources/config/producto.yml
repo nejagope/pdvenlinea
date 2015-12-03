@@ -25,3 +25,7 @@ producto_delete:
 producto_show:
     path:     /show/{id}
     defaults: { _controller: PdvBundle:Producto:show,id:null }
+
+producto_upload:
+    path:     /upload
+    defaults: { _controller: PdvBundle:Producto:upload }

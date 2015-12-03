@@ -242,4 +242,7 @@ class Cliente
     {
         return $this->updatedat;
     }
+    public function __toString(){
+        return (string) $this->getNitcliente()." | ".$this->getNombrecliente();
+    }
 }

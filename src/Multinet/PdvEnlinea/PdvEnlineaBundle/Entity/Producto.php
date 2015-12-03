@@ -437,4 +437,7 @@ class Producto
     {
         return $this->idTipoMoneda;
     }
+    public function __toString(){
+        return (string) $this->getNombre();
+    }
 }

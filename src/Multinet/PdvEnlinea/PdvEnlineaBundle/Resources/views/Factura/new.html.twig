@@ -1,0 +1,87 @@
+{% extends 'PdvBundle::layout.html.twig' %}
+{% block content %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$( "#search" ).dialog({
+	        autoOpen: false,
+	        resizable:false,
+	        draggable: false,
+	        width:500,
+	        height:300,
+	        title: 'Búsqueda de Registro'
+	      });
+	});
+	function openSearch(boton){
+		var idboton = "#"+$(boton).attr('id');
+	    $('#search').dialog("option","position", { my: "left bottom", at: "right top", of: idboton });
+	    $('#search').dialog('open');
+	}
+	function submitForm(boton){
+		if ($('#multinet_pdvonline_pdvonlinebundle_producto_nombre').val() != "") {
+			$(boton).button('loading');
+			
+		};
+	}
+	function getDataSearch(tabla,objeto){
+		var data = {
+			url: "{{ path('pdv_searchs') }}/"+tabla+"/"+objeto,
+			success: function(result){
+				$('#search').html(result);
+			},
+			boforeSend: function(){
+				$('#search').html('Cargando...');
+			},
+			error: function(){
+				alert('error');
+			},
+			method: "POST"
+		};
+		$.ajax(data);
+	}
+</script>
+<div class="container">
+     <div class="page-header">
+        <h4>Factura <small>Creación</small></h4>
+        <a href="{{ path('factura') }}" style="float:right" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Regresar a Listado</a>
+    </div>
+	<form action="{{ path('factura_create') }}" method="POST">
+		{{form_errors(form)}}
+        {{form_widget(form._token)}}
+        <div class="col-md-4">
+	        {{ form_label(form.idCliente) }}
+	        {{ form_widget(form.idCliente)}}
+        </div>
+        <div class="col-md-1">
+        	<br/>
+        	<button class="btn" id="btnSearchCliente" onclick="openSearch(this),getDataSearch('Cliente','multinet_pdvenlinea_pdvenlineabundle_factura_idCliente')" type="button"><span class="glyphicon glyphicon-search"></span></button>
+        </div>
+        <div class="col-md-4">
+	        {{ form_label(form.idSucursal) }}
+	        {{ form_widget(form.idSucursal)}}
+        </div>
+         <div class="col-md-1">
+        	<br/>
+        	<button class="btn" id="btnSearchSucursal" onclick="openSearch(this),getDataSearch('Sucursal','multinet_pdvenlinea_pdvenlineabundle_factura_idSucursal')" type="button"><span class="glyphicon glyphicon-search"></span></button>
+        </div>
+        <div style="display:none">
+        	{{ form_label(form.idempleado) }}
+        	{{ form_widget(form.idempleado)}}
+	        {{ form_label(form.status) }}
+	        {{ form_widget(form.status)}}
+	        {{ form_label(form.createdat) }}
+	        {{ form_widget(form.createdat)}}
+	        {{ form_label(form.updatedat) }}
+	        {{ form_widget(form.updatedat)}}
+        </div>
+        <div class="clearfix"></div>
+        <br/>
+        <div class="col-md-2">
+        	<button type="submit" onclick="submitForm(this)" data-loading-text="Guardando..." class="btn btn-success btn-sm btn-block"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar Encabezado</button>
+		</div>
+	</form>
+
+</div>
+<div id="search">
+	
+</div>
+{% endblock %}

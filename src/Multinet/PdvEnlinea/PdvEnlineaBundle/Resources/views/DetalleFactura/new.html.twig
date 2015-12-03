@@ -1,0 +1,49 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$( "#search" ).dialog({
+            autoOpen: false,
+            resizable:false,
+            draggable: false,
+            width:500,
+            height:300,
+            title: 'Búsqueda de Registro'
+          });
+});
+	function openSearch(boton){
+        var idboton = "#"+$(boton).attr('id');
+        $('#search').dialog("option","position", { my: "left bottom", at: "right top", of: idboton });
+        $('#search').dialog('open');
+    }
+</script>
+
+	<form action="{{ path('detallefactura_create') }}/{{idFactura}}" method="POST" id="formNewDetalleFactura">
+		{{form_errors(form)}}
+        {{form_widget(form._token)}}
+        <div class="clearfix"></div>
+       <div class="col-md-6">
+        {{ form_label(form.idproducto) }}
+        {{ form_widget(form.idproducto)}}
+        </div>
+        <div class="col-md-1">
+        	<br/>
+			<button type="button" class="btn btn-default" onclick="openSearch(this)" id="btnSearchModal"><span class="glyphicon glyphicon-search"></span></button>
+		</div>
+		<div class="col-md-3">
+        {{ form_label(form.cantidad) }}
+        {{ form_widget(form.cantidad)}}
+      </div>
+       
+        <div style="display:none">
+        	{{ form_label(form.idfactura) }}
+	        {{ form_widget(form.idfactura)}}
+	        {{ form_label(form.createdAt) }}
+	        {{ form_widget(form.createdAt)}}
+
+	        {{ form_label(form.updatedAt) }}
+	        {{ form_widget(form.updatedAt)}}
+        </div>
+        <br/>
+	</form>
+	<div id="search">
+    
+	</div>

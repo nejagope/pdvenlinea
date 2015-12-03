@@ -3,6 +3,7 @@
 namespace Multinet\PdvEnlinea\PdvEnlineaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Empleado
@@ -10,8 +11,46 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="empleado", indexes={@ORM\Index(name="idTipoEmpleado", columns={"idTipoEmpleado"}), @ORM\Index(name="idPuesto", columns={"idPuesto"}), @ORM\Index(name="idAreaEmpresa", columns={"idAreaEmpresa"})})
  * @ORM\Entity
  */
-class Empleado
+class Empleado implements UserInterface, \Serializable
 {
+    public function getUserName()
+    {
+        return $this->getUsuariosistema();
+    }
+    public function getPassword()
+    {
+        return $this->getPasswordsistema();
+    }
+    public function getSalt()
+    {
+        return '';
+    }
+    public function getRoles()
+    {
+        return array($this->getRol());
+    }
+     public function eraseCredentials()
+    {
+    }
+         public function serialize()
+         {
+                return serialize(array(
+                    $this->id,
+                    $this->passwordsistema,
+                    // see section on salt below
+                    // $this->salt,
+                ));
+         }
+
+         public function unserialize($serialized)
+         {
+                list (
+                    $this->id,
+                    $this->passwordsistema,
+                    // see section on salt below
+                    // $this->salt
+                ) = unserialize($serialized);
+         }
     /**
      * @var integer
      *
@@ -24,7 +63,7 @@ class Empleado
     /**
      * @var integer
      *
-     * @ORM\Column(name="idTienda", type="integer", nullable=false)
+     * @ORM\Column(name="idTienda", type="integer", nullable=true)
      */
     private $idtienda;
 
@@ -83,6 +122,13 @@ class Empleado
      * @ORM\Column(name="fechaContratado", type="datetime", nullable=false)
      */
     private $fechacontratado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rol", type="string", length=20, nullable=true)
+     */
+    private $rol;
 
     /**
      * @var \DateTime
@@ -167,6 +213,28 @@ class Empleado
         return $this;
     }
 
+    /**
+     * Set rol
+     *
+     * @param string $rol
+     * @return Dxtabase
+     */
+    public function setRol($rol)
+    {
+        $this->rol = $rol;
+    
+        return $this;
+    }
+
+    /**
+     * Get rol
+     *
+     * @return string 
+     */
+    public function getRol()
+    {
+        return $this->rol;
+    }
     /**
      * Get idtienda
      *
@@ -520,5 +588,8 @@ class Empleado
     public function getIdareaempresa()
     {
         return $this->idareaempresa;
+    }
+    public function __toString(){
+        return (string) $this->getNombres()." ".$this->getApellidos();
     }
 }

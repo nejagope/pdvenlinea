@@ -1,0 +1,15 @@
+ventasdiarias:
+    path:     /ventasdiarias
+    defaults: { _controller: PdvBundle:Reportes:ventasdiarias }
+
+ventasporvendedor:
+    path:     /ventasporvendedor
+    defaults: { _controller: PdvBundle:Reportes:ventasporvendedor }
+
+productosmasvendidos:
+    path:     /productosmasvendidos
+    defaults: { _controller: PdvBundle:Reportes:productosmasvendidos }
+
+clientescompras:
+    path:     /clientescompras
+    defaults: { _controller: PdvBundle:Reportes:clientescompras }

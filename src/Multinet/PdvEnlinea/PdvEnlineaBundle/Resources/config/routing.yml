@@ -1,3 +1,11 @@
 pdv_homepage:
     path:     /index/
     defaults: { _controller: PdvBundle:Default:index }
+
+pdv_principal:
+    path:     /principal/
+    defaults: { _controller: PdvBundle:Default:principal }
+
+pdv_searchs:
+    path:     /search/{tabla}/{objeto}
+    defaults: { _controller: PdvBundle:Default:search,tabla:null,objeto:null }

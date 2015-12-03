@@ -1,0 +1,27 @@
+factura:
+    path:     /index
+    defaults: { _controller: PdvBundle:Factura:index }
+
+factura_new:
+    path:     /new/
+    defaults: { _controller: PdvBundle:Factura:new }
+
+factura_create:
+    path:     /create/
+    defaults: { _controller: PdvBundle:Factura:create }
+
+factura_edit:
+    path:     /edit/{id}
+    defaults: { _controller: PdvBundle:Factura:edit,id:null }
+
+factura_update:
+    path:     /update/{id}
+    defaults: { _controller: PdvBundle:Factura:update }
+
+factura_delete:
+    path:     /delete/{id}
+    defaults: { _controller: PdvBundle:Factura:delete,id:null }
+
+factura_show:
+    path:     /show/{id}
+    defaults: { _controller: PdvBundle:Factura:show,id:null }

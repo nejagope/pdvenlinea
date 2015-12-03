@@ -1,0 +1,38 @@
+{% extends 'PdvBundle::layout.html.twig' %}
+
+{% block content -%}
+<script type ="text/javascript">
+    function redireccionar(id){
+        window.location.href = "{{path('factura_show')}}/"+id;
+    }
+</script>
+    <div class = "container">
+    <div class="page-header">
+        <h4> Facturas <small>Listado</small></h4>
+        <a href="{{ path('factura_new')}}" style = "float:right" class="btn btn-success btn-sm">
+            <span class="glyphicon glyphicon-plus"> </span> Facturar </a>
+    </div>
+    </br>
+    {% if entities is not empty %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th># de Factura</th>
+                <th>Fecha de Creación</th>
+                <th>Cliente</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr onclick="redireccionar({{entity.id}})" style="cursor:pointer">
+                <td><a href="{{ path('factura_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{entity.idCliente}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-warning"> No existen Facturas </div>
+    {% endif %}
+    {% endblock %}
